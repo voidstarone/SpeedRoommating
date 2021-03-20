@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFCompactDisplay-Medium.otf">
+            <string>SFCompactDisplay-Medium</string>
+        </array>
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="326" id="1th-kW-LCQ" customClass="EventTableViewCell" customModule="SpeedRoommating" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="534" height="326"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1th-kW-LCQ" id="C9v-m9-7l1">
+                <rect key="frame" x="0.0" y="0.0" width="534" height="326"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1eR-Ok-AtH">
+                        <rect key="frame" x="0.0" y="0.0" width="534" height="326"/>
+                    </imageView>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaf-Ph-kv8" userLabel="Foreground">
+                        <rect key="frame" x="0.0" y="0.0" width="534" height="326"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fya-Bh-8zv">
+                                <rect key="frame" x="16" y="260" width="182" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manhattan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nEH-Iu-m6E">
+                                        <rect key="frame" x="0.0" y="0.0" width="182" height="20.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Medium" family="SF Compact Display" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Penny Farthing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RZs-MX-7Xt">
+                                        <rect key="frame" x="0.0" y="30.5" width="182" height="19.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="16"/>
+                                        <color key="textColor" name="Silver"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytB-wK-v9g" customClass="TransluscentRoundedLabel" customModule="SpeedRoommating" customModuleProvider="target">
+                                <rect key="frame" x="16" y="16" width="56" height="28.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="FREE"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Et9-rE-nRn">
+                                <rect key="frame" x="326" y="261" width="192" height="49"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24th June" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZST-42-6Tu" userLabel="24th June">
+                                        <rect key="frame" x="117" y="0.0" width="75" height="20.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Medium" family="SF Compact Display" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:30 — 8 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Sj-Bf-PvT" userLabel="6:30 - 8pm">
+                                        <rect key="frame" x="105" y="29.5" width="87" height="19.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="16"/>
+                                        <color key="textColor" name="Silver"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Et9-rE-nRn" secondAttribute="bottom" constant="16" id="8Lf-Hy-hZ5"/>
+                            <constraint firstItem="ytB-wK-v9g" firstAttribute="leading" secondItem="qaf-Ph-kv8" secondAttribute="leading" constant="16" id="9rk-5P-84D"/>
+                            <constraint firstAttribute="leading" secondItem="Fya-Bh-8zv" secondAttribute="leading" constant="-16" id="FP5-T6-lRR"/>
+                            <constraint firstAttribute="bottom" secondItem="Fya-Bh-8zv" secondAttribute="bottom" constant="16" id="cUe-6r-6hM"/>
+                            <constraint firstAttribute="trailing" secondItem="Et9-rE-nRn" secondAttribute="trailing" constant="16" id="iHh-mm-xrD"/>
+                            <constraint firstItem="ytB-wK-v9g" firstAttribute="top" secondItem="qaf-Ph-kv8" secondAttribute="top" constant="16" id="qIZ-sd-bCz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="1eR-Ok-AtH" firstAttribute="leading" secondItem="C9v-m9-7l1" secondAttribute="leading" id="0fb-fM-YGS"/>
+                    <constraint firstAttribute="trailing" secondItem="1eR-Ok-AtH" secondAttribute="trailing" id="EtJ-4j-yMC"/>
+                    <constraint firstAttribute="bottom" secondItem="qaf-Ph-kv8" secondAttribute="bottom" id="F1I-fc-i1Q"/>
+                    <constraint firstAttribute="bottom" secondItem="1eR-Ok-AtH" secondAttribute="bottom" id="KB2-JI-ctP"/>
+                    <constraint firstItem="qaf-Ph-kv8" firstAttribute="leading" secondItem="C9v-m9-7l1" secondAttribute="leading" id="OKT-Bd-rbf"/>
+                    <constraint firstAttribute="trailing" secondItem="qaf-Ph-kv8" secondAttribute="trailing" id="Rnl-jH-VbZ"/>
+                    <constraint firstItem="qaf-Ph-kv8" firstAttribute="top" secondItem="C9v-m9-7l1" secondAttribute="top" id="tq9-0j-g8r"/>
+                    <constraint firstItem="1eR-Ok-AtH" firstAttribute="top" secondItem="C9v-m9-7l1" secondAttribute="top" id="xYE-jg-Ei1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backgroundImageView" destination="1eR-Ok-AtH" id="wTD-ph-KWx"/>
+                <outlet property="costLabel" destination="ytB-wK-v9g" id="I5q-Mq-dMo"/>
+                <outlet property="dateLabel" destination="ZST-42-6Tu" id="1rG-rV-2eR"/>
+                <outlet property="locationLabel" destination="RZs-MX-7Xt" id="mGB-bX-lup"/>
+                <outlet property="timeLabel" destination="7Sj-Bf-PvT" id="PtU-62-dvB"/>
+                <outlet property="venueLabel" destination="nEH-Iu-m6E" id="V3j-1n-tf0"/>
+            </connections>
+            <point key="canvasLocation" x="256.52173913043481" y="256.47321428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Silver">
+            <color red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import SpeedRoommatingEventRepository
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let ep = SpeedRoommatingEventProvider()
+
+        ep.preloadEventsOnOrAfter(date: Date()) {_ in }
         // Do any additional setup after loading the view.
     }
-
-
 }
 
