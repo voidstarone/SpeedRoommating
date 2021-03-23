@@ -18,7 +18,6 @@ enum KingfisherImageProviderError : Error {
 public struct KingfisherImageProvider : IImageProvider {
     
     // Abstract this
-    public let imgixClient = ImgixClient.init(host: "images.unsplash.com")
     private let cache = ImageCache.default
     private let downloader = ImageDownloader.default
     public let overrideScaleFactor: CGFloat?
@@ -27,14 +26,8 @@ public struct KingfisherImageProvider : IImageProvider {
         self.overrideScaleFactor = overrideScaleFactor
     }
   
-    public func requestImage(named imageName: String, atSize size: CGSize, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
-        
-        let imageUrl = imgixClient.buildUrl(imageName, params: [
-            "w": size.width,
-            "h": size.height,
-            "fit": "crop"
-        ])
-        
+    func requestImage(atUrl imageUrl: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
+                
         downloadImage(url: imageUrl) {
             result in
             switch result {
@@ -47,13 +40,13 @@ public struct KingfisherImageProvider : IImageProvider {
         }
     }
     
-    public func deleteCache(onComplete: @escaping () -> Void) {
+    func deleteCache(onComplete: @escaping () -> Void) {
         cache.clearMemoryCache()
         cache.clearDiskCache(completion: onComplete)
     }
     
-    private func fetchImageFromCache(url: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
-        cache.retrieveImage(forKey: url.absoluteString) {
+    private func fetchImageFromCache(url imageUrl: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
+        cache.retrieveImage(forKey: imageUrl.absoluteString) {
             result in
             switch result {
             case .success(let value):
@@ -64,8 +57,8 @@ public struct KingfisherImageProvider : IImageProvider {
         }
     }
     
-    private func downloadImage(url: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
-        downloader.downloadImage(with: url) { result in
+    private func downloadImage(url imageUrl: URL , onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
+        downloader.downloadImage(with: imageUrl) { result in
             switch result {
             case .success(let value):
                 onComplete(.success(value.image))

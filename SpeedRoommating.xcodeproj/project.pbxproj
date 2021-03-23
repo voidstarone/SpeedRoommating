@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		60213F46260A1CA00060091B /* SpeedRoommatingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DE47BA2607F75F00FC3E5B /* SpeedRoommatingEvent.swift */; };
 		60213F49260A2C960060091B /* ImgixSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 60213F48260A2C960060091B /* ImgixSwift */; };
+		60213F4C260A864E0060091B /* IViewableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F4B260A864D0060091B /* IViewableEvent.swift */; };
+		60213F50260A92C40060091B /* ViewableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F4F260A92C40060091B /* ViewableEvent.swift */; };
+		60213F55260A966F0060091B /* ICdnUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F54260A966F0060091B /* ICdnUrlProvider.swift */; };
+		60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F57260A96E30060091B /* ImgxUrlProvider.swift */; };
+		60213F5A260A98250060091B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F59260A98250060091B /* Config.swift */; };
+		60213F60260AA8050060091B /* ViewableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F5F260AA8050060091B /* ViewableEventTests.swift */; };
 		6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */; };
 		6027E0E02603E6C5008FE8A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */; };
 		6027E0E22603E6C5008FE8A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0E12603E6C5008FE8A4 /* ViewController.swift */; };
@@ -49,6 +55,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		60213F4B260A864D0060091B /* IViewableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IViewableEvent.swift; sourceTree = "<group>"; };
+		60213F4F260A92C40060091B /* ViewableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewableEvent.swift; sourceTree = "<group>"; };
+		60213F54260A966F0060091B /* ICdnUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICdnUrlProvider.swift; sourceTree = "<group>"; };
+		60213F57260A96E30060091B /* ImgxUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgxUrlProvider.swift; sourceTree = "<group>"; };
+		60213F59260A98250060091B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		60213F5F260AA8050060091B /* ViewableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewableEventTests.swift; sourceTree = "<group>"; };
 		6027E0DA2603E6C5008FE8A4 /* SpeedRoommating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedRoommating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +118,99 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60213F4A260A86260060091B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				60213F5E260AA7C90060091B /* DataDecorators */,
+				60213F51260A96240060091B /* ICdnUrlProvider */,
+				60587DEC2606706C00A41C2E /* ImageProvider */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		60213F4D260A929E0060091B /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				60213F4B260A864D0060091B /* IViewableEvent.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		60213F4E260A92AA0060091B /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				60213F4F260A92C40060091B /* ViewableEvent.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		60213F51260A96240060091B /* ICdnUrlProvider */ = {
+			isa = PBXGroup;
+			children = (
+				60213F52260A96500060091B /* Interface */,
+				60213F53260A96580060091B /* Implementation */,
+			);
+			path = ICdnUrlProvider;
+			sourceTree = "<group>";
+		};
+		60213F52260A96500060091B /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				60213F54260A966F0060091B /* ICdnUrlProvider.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		60213F53260A96580060091B /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				60213F57260A96E30060091B /* ImgxUrlProvider.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		60213F5B260AA7660060091B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				60213F61260AA8410060091B /* Mocks */,
+				60213F5D260AA7960060091B /* ViewableEvent */,
+				60213F5C260AA7770060091B /* KingfisherImageProvider */,
+				60587DF226067ACE00A41C2E /* ImageProvider */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		60213F5C260AA7770060091B /* KingfisherImageProvider */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = KingfisherImageProvider;
+			sourceTree = "<group>";
+		};
+		60213F5D260AA7960060091B /* ViewableEvent */ = {
+			isa = PBXGroup;
+			children = (
+				60213F5F260AA8050060091B /* ViewableEventTests.swift */,
+			);
+			path = ViewableEvent;
+			sourceTree = "<group>";
+		};
+		60213F5E260AA7C90060091B /* DataDecorators */ = {
+			isa = PBXGroup;
+			children = (
+				60213F4D260A929E0060091B /* Interface */,
+				60213F4E260A92AA0060091B /* Implementation */,
+			);
+			path = DataDecorators;
+			sourceTree = "<group>";
+		};
+		60213F61260AA8410060091B /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		6027E0D12603E6C5008FE8A4 = {
 			isa = PBXGroup;
 			children = (
@@ -129,9 +234,10 @@
 		6027E0DC2603E6C5008FE8A4 /* SpeedRoommating */ = {
 			isa = PBXGroup;
 			children = (
+				60213F59260A98250060091B /* Config.swift */,
 				60DE47B52607F62A00FC3E5B /* DataModel */,
 				609B96F72607749700E96AFF /* RoommatingEventProvider */,
-				606BA85526068BDA0063250A /* ImageHandling */,
+				60213F4A260A86260060091B /* ViewModel */,
 				606BA85426068BC30063250A /* View */,
 				60E0FC0E26069D110022F25C /* ViewController */,
 				6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */,
@@ -149,7 +255,7 @@
 		6027E0F32603E6C8008FE8A4 /* SpeedRoommatingTests */ = {
 			isa = PBXGroup;
 			children = (
-				60587DF226067ACE00A41C2E /* ImageProvider */,
+				60213F5B260AA7660060091B /* ViewModel */,
 				6027E0F42603E6C8008FE8A4 /* SpeedRoommatingTests.swift */,
 				6027E0F62603E6C8008FE8A4 /* Info.plist */,
 			);
@@ -168,7 +274,8 @@
 		60587DEC2606706C00A41C2E /* ImageProvider */ = {
 			isa = PBXGroup;
 			children = (
-				60587DED260670AF00A41C2E /* KingfisherImageProvider.swift */,
+				606BA85326068B7A0063250A /* Implementation */,
+				60587DEF2606733200A41C2E /* Interface */,
 			);
 			path = ImageProvider;
 			sourceTree = "<group>";
@@ -176,7 +283,7 @@
 		60587DEF2606733200A41C2E /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				606BA85226068B6E0063250A /* ImageProvider */,
+				60587DF02606734400A41C2E /* IImageProvider.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -189,18 +296,10 @@
 			path = ImageProvider;
 			sourceTree = "<group>";
 		};
-		606BA85226068B6E0063250A /* ImageProvider */ = {
-			isa = PBXGroup;
-			children = (
-				60587DF02606734400A41C2E /* IImageProvider.swift */,
-			);
-			path = ImageProvider;
-			sourceTree = "<group>";
-		};
 		606BA85326068B7A0063250A /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				60587DEC2606706C00A41C2E /* ImageProvider */,
+				60587DED260670AF00A41C2E /* KingfisherImageProvider.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -213,15 +312,6 @@
 				60E0FC0C260695B60022F25C /* TransluscentRoundedLabel.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		606BA85526068BDA0063250A /* ImageHandling */ = {
-			isa = PBXGroup;
-			children = (
-				60587DEF2606733200A41C2E /* Interface */,
-				606BA85326068B7A0063250A /* Implementation */,
-			);
-			path = ImageHandling;
 			sourceTree = "<group>";
 		};
 		6097B9C52606906F00BDBE1C /* fonts */ = {
@@ -436,14 +526,19 @@
 				60DE47C02607FBBF00FC3E5B /* RoommatingEventProvider.swift in Sources */,
 				60587DF12606734400A41C2E /* IImageProvider.swift in Sources */,
 				60E0FC0D260695B60022F25C /* TransluscentRoundedLabel.swift in Sources */,
+				60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */,
+				60213F5A260A98250060091B /* Config.swift in Sources */,
 				60E0FC1026069D380022F25C /* EventListTableViewController.swift in Sources */,
 				606BA85926068CAE0063250A /* EventTableViewCell.swift in Sources */,
 				60213F46260A1CA00060091B /* SpeedRoommatingEvent.swift in Sources */,
 				6027E0E22603E6C5008FE8A4 /* ViewController.swift in Sources */,
+				60213F50260A92C40060091B /* ViewableEvent.swift in Sources */,
 				60DE47B72607F63F00FC3E5B /* ISpeedRoommatingEvent.swift in Sources */,
 				609B96F9260774C800E96AFF /* ISpeedRoommatingEventProvider.swift in Sources */,
 				6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */,
+				60213F55260A966F0060091B /* ICdnUrlProvider.swift in Sources */,
 				60587DEE260670AF00A41C2E /* KingfisherImageProvider.swift in Sources */,
+				60213F4C260A864E0060091B /* IViewableEvent.swift in Sources */,
 				6027E0E02603E6C5008FE8A4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60213F60260AA8050060091B /* ViewableEventTests.swift in Sources */,
 				60587DF426067B0400A41C2E /* KingfisherImageProviderTests.swift in Sources */,
 				6027E0F52603E6C8008FE8A4 /* SpeedRoommatingTests.swift in Sources */,
 			);
