@@ -18,7 +18,7 @@ class EventListTableViewController: UITableViewController {
     let imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
     var eventSplitByMonth:
-[[ISpeedRoommatingEvent]]?
+[[IViewableEvent]]?
     
 
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class EventListTableViewController: UITableViewController {
                     for year in groupedEvents {
                         year.value.forEach {
                             month in
-                            self.eventSplitByMonth?.append(month.value)
+                            self.eventSplitByMonth?.append(month.value.map { ViewableEvent(event: $0) })
                         }
                     }
                     
@@ -96,7 +96,7 @@ class EventListTableViewController: UITableViewController {
                 return
             }
             
-            let durationText = self!.datesToDurationText(startTime: eventForCell.startTime, endTime: eventForCell.endTime)
+            let durationText = eventForCell.durationText
             
             DispatchQueue.main.async {
                 cell.locationLabel.text = eventForCell.location
@@ -105,7 +105,7 @@ class EventListTableViewController: UITableViewController {
                 cell.timeLabel.text = durationText
             }
             
-            self!.imageProvider.requestImage(named: eventForCell.imageName, atSize: imageTargetSize) {
+            self!.imageProvider.requestImage(atUrl: eventForCell.imageUrlAt(size: imageTargetSize)) {
                 result in
                 switch result {
                 case let .failure(error):
@@ -123,13 +123,7 @@ class EventListTableViewController: UITableViewController {
         return cell
     }
     
-    func datesToDurationText(startTime: Date, endTime: Date) -> String {
-        let calendar = Calendar.current
-        let startTimeComponents = calendar.dateComponents([.hour, .minute], from: startTime)
-        let endTimeComponents = calendar.dateComponents([.hour, .minute], from: endTime)
-     
-        return "\(startTimeComponents.hour!):\(startTimeComponents.minute!) — \(endTimeComponents.hour!):\(endTimeComponents.minute!)"
-    }
+   
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 210.0

@@ -11,6 +11,6 @@ import UIKit
 
 
 protocol IImageProvider {
-    func requestImage(named: String, atSize size: CGSize, onComplete: @escaping (Result<UIImage?, Error>) -> Void)
+    func requestImage(atUrl imageUrl: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void)
     func deleteCache(onComplete: @escaping () -> Void)
 }
