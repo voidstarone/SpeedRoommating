@@ -15,6 +15,8 @@
 		60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F57260A96E30060091B /* ImgxUrlProvider.swift */; };
 		60213F5A260A98250060091B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F59260A98250060091B /* Config.swift */; };
 		60213F60260AA8050060091B /* ViewableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F5F260AA8050060091B /* ViewableEventTests.swift */; };
+		60213F66260AB9AF0060091B /* EventTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */; };
+		60213F6A260ABDA70060091B /* IEventTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F69260ABDA70060091B /* IEventTableDataSource.swift */; };
 		6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */; };
 		6027E0E02603E6C5008FE8A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */; };
 		6027E0E22603E6C5008FE8A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0E12603E6C5008FE8A4 /* ViewController.swift */; };
@@ -61,6 +63,8 @@
 		60213F57260A96E30060091B /* ImgxUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgxUrlProvider.swift; sourceTree = "<group>"; };
 		60213F59260A98250060091B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		60213F5F260AA8050060091B /* ViewableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewableEventTests.swift; sourceTree = "<group>"; };
+		60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewDataSource.swift; sourceTree = "<group>"; };
+		60213F69260ABDA70060091B /* IEventTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventTableDataSource.swift; sourceTree = "<group>"; };
 		6027E0DA2603E6C5008FE8A4 /* SpeedRoommating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedRoommating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		60213F4A260A86260060091B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				60213F64260AB9770060091B /* EventTableDataSource */,
 				60213F5E260AA7C90060091B /* DataDecorators */,
 				60213F51260A96240060091B /* ICdnUrlProvider */,
 				60587DEC2606706C00A41C2E /* ImageProvider */,
@@ -209,6 +214,31 @@
 			children = (
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		60213F64260AB9770060091B /* EventTableDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				60213F67260ABD8C0060091B /* Interface */,
+				60213F68260ABD930060091B /* Implementation */,
+			);
+			path = EventTableDataSource;
+			sourceTree = "<group>";
+		};
+		60213F67260ABD8C0060091B /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				60213F69260ABDA70060091B /* IEventTableDataSource.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		60213F68260ABD930060091B /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		6027E0D12603E6C5008FE8A4 = {
@@ -527,6 +557,7 @@
 				60587DF12606734400A41C2E /* IImageProvider.swift in Sources */,
 				60E0FC0D260695B60022F25C /* TransluscentRoundedLabel.swift in Sources */,
 				60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */,
+				60213F6A260ABDA70060091B /* IEventTableDataSource.swift in Sources */,
 				60213F5A260A98250060091B /* Config.swift in Sources */,
 				60E0FC1026069D380022F25C /* EventListTableViewController.swift in Sources */,
 				606BA85926068CAE0063250A /* EventTableViewCell.swift in Sources */,
@@ -535,6 +566,7 @@
 				60213F50260A92C40060091B /* ViewableEvent.swift in Sources */,
 				60DE47B72607F63F00FC3E5B /* ISpeedRoommatingEvent.swift in Sources */,
 				609B96F9260774C800E96AFF /* ISpeedRoommatingEventProvider.swift in Sources */,
+				60213F66260AB9AF0060091B /* EventTableViewDataSource.swift in Sources */,
 				6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */,
 				60213F55260A966F0060091B /* ICdnUrlProvider.swift in Sources */,
 				60587DEE260670AF00A41C2E /* KingfisherImageProvider.swift in Sources */,

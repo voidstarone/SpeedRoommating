@@ -15,115 +15,26 @@ struct EventMonth {
 
 class EventListTableViewController: UITableViewController {
     
-    let imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
-    var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
-    var eventSplitByMonth:
-[[IViewableEvent]]?
-    
+    let eventsDataSource: IEventTableViewDataSource = EventTableViewDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
-        imageProvider.deleteCache {}
-        let fetchEventsThread = DispatchQueue(label: "fetchEvents", qos: .background)
-        fetchEventsThread.async {
-            self.eventProvider.getEventsByYearAndMonth(onOrAfterDate: Date()) {
-                result in
-                switch(result) {
-                case let .success(groupedEvents):
-                    self.eventSplitByMonth = []
-                    for year in groupedEvents {
-                        year.value.forEach {
-                            month in
-                            self.eventSplitByMonth?.append(month.value.map { ViewableEvent(event: $0) })
-                        }
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    break
-                case let .failure(error):
-                    //error
-                    break
-                }
+        tableView.dataSource = eventsDataSource.plainDataSource
+        tableView.delegate = self
+        eventsDataSource.fetchEventsFromEventProvider {
+            error in
+            if error != nil {
+                print(error)
+                return
             }
+            self.tableView.reloadData()
         }
-        
-        
     }
     
     private func isErrorState() {
         return
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections\
-        let thisYearsMonths = self.eventSplitByMonth?.count
-        return thisYearsMonths ?? 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-                        
-        var thisSectionsEventsCount = self.eventSplitByMonth?[section].count
-        
-        //TODO: delete this
-        thisSectionsEventsCount = min(thisSectionsEventsCount ?? 10, 5)
-        
-        return thisSectionsEventsCount ?? 10
-    }
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell", for: indexPath) as! EventTableViewCell
-        let heightConstraint = NSLayoutConstraint(item: cell, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 210)
-        heightConstraint.isActive = true
-        let imageTargetSize = cell.frame.size
-        
-        guard let eventForCell = eventSplitByMonth?[indexPath.section][indexPath.row] else {
-            // placeholder
-            return cell
-        }
-        
-        let fetchImageThread = DispatchQueue(label: "fetchImages", qos: .background)
-        fetchImageThread.async {
-            [weak self] in
-            if (self == nil) {
-                return
-            }
-            
-            let durationText = eventForCell.durationText
-            
-            DispatchQueue.main.async {
-                cell.locationLabel.text = eventForCell.location
-                cell.venueLabel.text = eventForCell.venue
-                cell.costLabel.labelText = eventForCell.cost
-                cell.timeLabel.text = durationText
-            }
-            
-            self!.imageProvider.requestImage(atUrl: eventForCell.imageUrlAt(size: imageTargetSize)) {
-                result in
-                switch result {
-                case let .failure(error):
-                    print(error)
-                    // TODO: no big deal; just get a placeholder
-                    break
-                case let .success(image):
-                    DispatchQueue.main.async {
-                        cell.backgroundImageView.image = image
-                    }
-                }
-            }
-        }
-        
-        return cell
-    }
-    
-   
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 210.0
