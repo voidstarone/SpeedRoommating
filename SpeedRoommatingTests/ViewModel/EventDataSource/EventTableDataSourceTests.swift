@@ -48,11 +48,20 @@ class EventTableDataSourceTests: XCTestCase {
         let promiseToFetchEvents = expectation(description: "fetch events")
         eventTableDataSource.fetchEventsFromEventProvider {
             _ in
-            
-            // Inconsistent; looks like events aren't properly sorted.
-            let numRows = self.eventTableDataSource.tableView(self.tableView,
+            let numRows0 = self.eventTableDataSource.tableView(self.tableView,
                                                               numberOfRowsInSection: 0)
-            XCTAssertEqual(numRows, 2)
+            XCTAssertEqual(numRows0, 2)
+            
+            let numRows1 = self.eventTableDataSource.tableView(self.tableView,
+                                                               numberOfRowsInSection: 1)
+            
+            XCTAssertEqual(numRows1, 1)
+            
+            let numRows2 = self.eventTableDataSource.tableView(self.tableView,
+                                                               numberOfRowsInSection: 2)
+            
+            XCTAssertEqual(numRows2, 1)
+            
             promiseToFetchEvents.fulfill()
         }
         waitForExpectations(timeout: 1, handler: nil)

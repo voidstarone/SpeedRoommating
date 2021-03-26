@@ -28,10 +28,14 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                 switch(result) {
                 case let .success(groupedEvents):
                     self.eventSplitByMonth = []
-                    for year in groupedEvents {
-                        year.value.forEach {
-                            month in
-                            self.eventSplitByMonth?.append(month.value.map { ViewableEvent(event: $0) })
+                    let sortedYears = Array(groupedEvents.keys).sorted(by: <)
+                    for yearNumber in sortedYears {
+                        let year = groupedEvents[yearNumber]!
+                        let sortedMonths = groupedEvents[yearNumber]!.keys.sorted(by: <)
+                            
+                        for monthNumber in sortedMonths {
+                            let month = year[monthNumber]!
+                            self.eventSplitByMonth?.append(month.map { ViewableEvent(event: $0) })
                         }
                     }
                     DispatchQueue.main.async {
