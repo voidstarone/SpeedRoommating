@@ -21,6 +21,12 @@ struct ViewableEvent : IViewableEvent {
     private var endTime: Date
     private let imageName: String
     
+    var dateAsShortReadable: String {
+        get {
+            return dateAsXthOfMonth(date: startTime)
+        }
+    }
+    
     var durationText: String {
         get {
             var durationString = ""
@@ -63,6 +69,19 @@ struct ViewableEvent : IViewableEvent {
     
     func imageUrlAt(size: CGSize) -> URL {
         return cdnUrlProvider.pathForImage(named: imageName, atSize: size)
+    }
+    
+    func dateAsXthOfMonth(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        let numFormatter = NumberFormatter()
+        numFormatter.numberStyle = .ordinal
+        
+        let dayNumber = calendar.component(.day, from: startTime)
+        let dayString = numFormatter.string(from: NSNumber(value: dayNumber))!
+        let monthString = dateFormatter.string(from: startTime)
+        
+        return "\(dayString) \(monthString)"
     }
     
     private func timeNeedsMinutes(_ time: Date) -> Bool {

@@ -26,17 +26,20 @@ class EventTableDataSourceTests: XCTestCase {
         eventTableDataSource.imageProvider = mockImageProvider
         eventTableDataSource.eventProvider = mockEventProvider
         
+        tableView.delegate = eventTableDataSource
+        tableView.dataSource = eventTableDataSource
+        
         tableView.register(UINib(nibName: "EventTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "EventTableViewCell")
     }
-
+    
     override func tearDown() {
-
+        
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     func testNumberOfSections() {
         let promiseToFetchEvents = expectation(description: "fetch events")
-
+        
         eventTableDataSource.fetchEventsFromEventProvider {
             _ in
             let numSections = self.eventTableDataSource.numberOfSections?(in: self.tableView)
@@ -51,7 +54,7 @@ class EventTableDataSourceTests: XCTestCase {
         eventTableDataSource.fetchEventsFromEventProvider {
             _ in
             let numRows0 = self.eventTableDataSource.tableView(self.tableView,
-                                                              numberOfRowsInSection: 0)
+                                                               numberOfRowsInSection: 0)
             XCTAssertEqual(numRows0, 2)
             
             let numRows1 = self.eventTableDataSource.tableView(self.tableView,
@@ -67,9 +70,28 @@ class EventTableDataSourceTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
+    func testGetHeader() {
+        let promiseToFetchEvents = expectation(description: "fetch events")
+        
+        let indexPath0_0 = IndexPath(row: 0, section: 0)
+        
+        eventTableDataSource.fetchEventsFromEventProvider {
+            _ in
+            let firstHeader = self.eventTableDataSource.tableView?(self.tableView, viewForHeaderInSection: 0) as! EventTableHeaderView
+            
+            sleep(1) // nasty; not sure of the best way to delete this
+            DispatchQueue.main.async {
+                XCTAssertEqual(firstHeader.headerLabel.text, "November")
+                promiseToFetchEvents.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 2, handler: nil)
+    }
+    
     func testGetRow() {
         let promiseToFetchEvents = expectation(description: "fetch events")
-
+        
         let indexPath0_0 = IndexPath(row: 0, section: 0)
         
         eventTableDataSource.fetchEventsFromEventProvider {
@@ -86,5 +108,5 @@ class EventTableDataSourceTests: XCTestCase {
         
         waitForExpectations(timeout: 2, handler: nil)
     }
-
+    
 }

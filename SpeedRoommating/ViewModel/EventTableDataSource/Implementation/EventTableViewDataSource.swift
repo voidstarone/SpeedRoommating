@@ -15,6 +15,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
     
     private var eventSplitByMonth: [[IViewableEvent]]?
+    private var sectionMonthNumbers: [Int]?
 
     override init() {
         imageProvider.deleteCache {}
@@ -28,11 +29,12 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                 switch(result) {
                 case let .success(groupedEvents):
                     self.eventSplitByMonth = []
+                    self.sectionMonthNumbers = []
                     let sortedYears = Array(groupedEvents.keys).sorted(by: <)
                     for yearNumber in sortedYears {
                         let year = groupedEvents[yearNumber]!
                         let sortedMonths = groupedEvents[yearNumber]!.keys.sorted(by: <)
-                            
+                        self.sectionMonthNumbers!.append(contentsOf: sortedMonths)
                         for monthNumber in sortedMonths {
                             let month = year[monthNumber]!
                             self.eventSplitByMonth?.append(month.map { ViewableEvent(event: $0) })
@@ -82,11 +84,13 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             }
             
             let durationText = eventForCell.durationText
+            let shortReadableDate = eventForCell.dateAsShortReadable
             
             DispatchQueue.main.async {
                 cell.locationLabel.text = eventForCell.location
                 cell.venueLabel.text = eventForCell.venue
                 cell.costLabel.labelText = eventForCell.cost
+                cell.dateLabel.text = shortReadableDate
                 cell.timeLabel.text = durationText
             }
             
@@ -117,8 +121,11 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = EventTableHeaderView()
-        
-        headerView.headerLabel.text = "NOT A MONTH"
+        guard let monthNumber = sectionMonthNumbers?[section] else {
+            return UIView()
+        }
+        let monthName = DateFormatter().monthSymbols?[monthNumber - 1]
+        headerView.headerLabel.text = monthName
         
         return headerView
     }
