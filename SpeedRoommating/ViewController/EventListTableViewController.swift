@@ -20,7 +20,7 @@ class EventListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
-        tableView.dataSource = eventsDataSource.plainDataSource
+        tableView.dataSource = eventsDataSource
         tableView.delegate = self
         eventsDataSource.fetchEventsFromEventProvider {
             error in

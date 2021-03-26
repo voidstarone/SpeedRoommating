@@ -13,7 +13,6 @@ protocol IEventTableViewDataSource : NSObject, UITableViewDataSource {
     
     var imageProvider: IImageProvider { get set }
     var eventProvider: ISpeedRoommatingEventProvider { get set }
-    var plainDataSource: UITableViewDataSource { get }
     
     func fetchEventsFromEventProvider(onComplete: @escaping (Error?) -> Void)
     

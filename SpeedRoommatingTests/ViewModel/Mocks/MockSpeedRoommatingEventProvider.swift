@@ -46,7 +46,7 @@ struct MockSpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
                 ],
              1918: [
                 11: [
-                SpeedRoommatingEvent(imageName: "photo-1525268323446-0505b6fe7778",
+                    SpeedRoommatingEvent(imageName: "photo-1525268323446-0505b6fe7778",
                                      cost: "free",
                                      location: "Germany",
                                      venue: "Kiel ships",

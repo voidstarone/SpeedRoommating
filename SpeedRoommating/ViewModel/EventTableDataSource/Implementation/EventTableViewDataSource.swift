@@ -13,11 +13,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
 
     var imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
-    var plainDataSource: UITableViewDataSource {
-        get {
-            return self
-        }
-    }
+    
     private var eventSplitByMonth: [[IViewableEvent]]?
 
     override init() {
@@ -58,6 +54,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let thisSectionsEventsCount = self.eventSplitByMonth?[section].count
+        print(self.eventSplitByMonth?[section])
         return thisSectionsEventsCount ?? 10
     }
 

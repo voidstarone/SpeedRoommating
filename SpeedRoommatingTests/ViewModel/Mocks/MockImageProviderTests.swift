@@ -15,9 +15,5 @@ struct MockImageProvider : IImageProvider {
         onComplete(.success(#imageLiteral(resourceName: "frederick-douglass.jpg")))
     }
     
-    func deleteCache(onComplete: @escaping () -> Void) {
-        <#code#>
-    }
-    
-    
+    func deleteCache(onComplete: @escaping () -> Void) {}
 }
