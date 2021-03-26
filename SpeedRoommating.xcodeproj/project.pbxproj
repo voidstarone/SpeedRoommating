@@ -21,6 +21,8 @@
 		60213F70260D61580060091B /* MockSpeedRoommatingEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F6F260D61580060091B /* MockSpeedRoommatingEventProvider.swift */; };
 		60213F73260D65B60060091B /* MockImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F72260D65B60060091B /* MockImageProviderTests.swift */; };
 		60213F79260D709A0060091B /* IEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F78260D709A0060091B /* IEventTableViewCell.swift */; };
+		60213F7B260D861E0060091B /* IEventTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F7A260D861E0060091B /* IEventTableHeaderView.swift */; };
+		60213F7D260D86730060091B /* EventTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F7C260D86730060091B /* EventTableHeaderView.swift */; };
 		6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */; };
 		6027E0E02603E6C5008FE8A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */; };
 		6027E0E22603E6C5008FE8A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0E12603E6C5008FE8A4 /* ViewController.swift */; };
@@ -73,6 +75,8 @@
 		60213F6F260D61580060091B /* MockSpeedRoommatingEventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSpeedRoommatingEventProvider.swift; sourceTree = "<group>"; };
 		60213F72260D65B60060091B /* MockImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageProviderTests.swift; sourceTree = "<group>"; };
 		60213F78260D709A0060091B /* IEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventTableViewCell.swift; sourceTree = "<group>"; };
+		60213F7A260D861E0060091B /* IEventTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventTableHeaderView.swift; sourceTree = "<group>"; };
+		60213F7C260D86730060091B /* EventTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableHeaderView.swift; sourceTree = "<group>"; };
 		6027E0DA2603E6C5008FE8A4 /* SpeedRoommating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedRoommating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 		60213F76260D70690060091B /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				60213F7A260D861E0060091B /* IEventTableHeaderView.swift */,
 				60213F78260D709A0060091B /* IEventTableViewCell.swift */,
 			);
 			path = Interface;
@@ -272,7 +277,9 @@
 		60213F77260D70710060091B /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				60213F7C260D86730060091B /* EventTableHeaderView.swift */,
 				606BA85826068CAE0063250A /* EventTableViewCell.swift */,
+				60E0FC0C260695B60022F25C /* TransluscentRoundedLabel.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -375,7 +382,6 @@
 				60213F76260D70690060091B /* Interface */,
 				60213F77260D70710060091B /* Implementation */,
 				606BA85626068C100063250A /* EventTableViewCell.xib */,
-				60E0FC0C260695B60022F25C /* TransluscentRoundedLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -589,10 +595,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60213F7B260D861E0060091B /* IEventTableHeaderView.swift in Sources */,
 				60DE47C02607FBBF00FC3E5B /* RoommatingEventProvider.swift in Sources */,
 				60587DF12606734400A41C2E /* IImageProvider.swift in Sources */,
 				60E0FC0D260695B60022F25C /* TransluscentRoundedLabel.swift in Sources */,
 				60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */,
+				60213F7D260D86730060091B /* EventTableHeaderView.swift in Sources */,
 				60213F6A260ABDA70060091B /* IEventTableDataSource.swift in Sources */,
 				60213F5A260A98250060091B /* Config.swift in Sources */,
 				60E0FC1026069D380022F25C /* EventListTableViewController.swift in Sources */,

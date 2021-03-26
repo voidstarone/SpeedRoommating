@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ImgixSwift",
+        "repositoryURL": "https://github.com/imgix/imgix-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "427ca0e6b90345069e93f9f28a712f899696b909",
+          "version": "1.1.2"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "2a10bf41da75599a9f8e872dbd44fe0155a2e00c",
+          "version": "5.15.8"
+        }
+      },
+      {
+        "package": "SpeedRoommatingEventRepository",
+        "repositoryURL": "https://github.com/voidstarone/SpareRoomEventRepository.git",
+        "state": {
+          "branch": null,
+          "revision": "b3269e958938e77dd018da331788e76a2097b263",
+          "version": "0.3.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
