@@ -8,11 +8,6 @@
 
 import UIKit
 
-struct EventMonth {
-    var month: Int
-    var events: [ISpeedRoommatingEvent]
-}
-
 class EventListTableViewController: UITableViewController {
     
     let eventsDataSource: IEventTableViewDataSource = EventTableViewDataSource()
@@ -21,13 +16,16 @@ class EventListTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         tableView.dataSource = eventsDataSource
-        tableView.delegate = self
+        tableView.delegate = eventsDataSource
+        tableView.estimatedRowHeight = 210
+        tableView.separatorStyle = .none
         eventsDataSource.fetchEventsFromEventProvider {
             error in
             if error != nil {
                 print(error)
                 return
             }
+            print(self.eventsDataSource)
             self.tableView.reloadData()
         }
     }
@@ -35,11 +33,7 @@ class EventListTableViewController: UITableViewController {
     private func isErrorState() {
         return
     }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 210.0
-    }
-    
+
 
     /*
     // Override to support conditional editing of the table view.

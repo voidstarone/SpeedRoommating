@@ -58,7 +58,6 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let thisSectionsEventsCount = self.eventSplitByMonth?[section].count
-        print(self.eventSplitByMonth?[section])
         return thisSectionsEventsCount ?? 10
     }
 
@@ -105,7 +104,22 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                 }
             }
         }
-        
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 210
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = EventTableHeaderView()
+        
+        headerView.headerLabel.text = "NOT A MONTH"
+        
+        return headerView
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol IEventTableViewDataSource : NSObject, UITableViewDataSource {
+protocol IEventTableViewDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var imageProvider: IImageProvider { get set }
     var eventProvider: ISpeedRoommatingEventProvider { get set }
