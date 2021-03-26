@@ -13,8 +13,8 @@ import XCTest
 
 class EventTableDataSourceTests: XCTestCase {
     
-    var imageProvider: IImageProvider = KingfisherImageProvider()
-    let testImageUrl: URL = URL(string: "https://images.unsplash.com/photo-1525268323446-0505b6fe7778")!
+    var eventProvider: ISpeedRoommatingEventProvider = MockSpeedRoommatingEventProvider()
+    var imageProvider: IImageProvider = MockImageProvider()
     
     override func setUp() {
         imageProvider = KingfisherImageProvider()
