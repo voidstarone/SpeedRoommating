@@ -23,19 +23,17 @@ class EventTableHeaderView : UIView, IEventTableHeaderView {
     }
     
     private func setup() {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        isOpaque = true
+        backgroundColor = UIColor.systemBackground
         headerLabel = UILabel()
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.font = UIFont(name:"SFCompactDisplay-Medium", size: 16)
         headerLabel.textColor = UIColor(named: "DustyGrey")
         addSubview(headerLabel)
         
-        let heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: .none, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        
-        let labelLeadingConstraint = NSLayoutConstraint(item: headerLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 12)
-        let labelTrailingConstraint = NSLayoutConstraint(item: headerLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 12)
-        let labelBottomConstraint = NSLayoutConstraint(item: headerLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 2)
-    
-        NSLayoutConstraint.activate([heightConstraint, labelLeadingConstraint, labelTrailingConstraint, labelBottomConstraint])
+        let labelLeadingConstraint = NSLayoutConstraint(item: headerLabel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 12)
+        let labelTrailingConstraint = NSLayoutConstraint(item: headerLabel!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 12)
+        let labelBottomConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: headerLabel!, attribute: .bottom, multiplier: 1, constant: 6)
+        NSLayoutConstraint.activate([labelLeadingConstraint, labelTrailingConstraint, labelBottomConstraint])
     }
 }

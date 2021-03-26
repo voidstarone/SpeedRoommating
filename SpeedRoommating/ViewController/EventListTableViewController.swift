@@ -18,14 +18,12 @@ class EventListTableViewController: UITableViewController {
         tableView.dataSource = eventsDataSource
         tableView.delegate = eventsDataSource
         tableView.estimatedRowHeight = 210
-        tableView.separatorStyle = .none
         eventsDataSource.fetchEventsFromEventProvider {
             error in
             if error != nil {
                 print(error)
                 return
             }
-            print(self.eventsDataSource)
             self.tableView.reloadData()
         }
     }

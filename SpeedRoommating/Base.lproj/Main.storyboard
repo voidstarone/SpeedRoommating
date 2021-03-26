@@ -110,7 +110,7 @@
         <scene sceneID="NDM-Ca-0vO">
             <objects>
                 <tableViewController id="o81-vQ-BCf" customClass="EventListTableViewController" customModule="SpeedRoommating" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="210" estimatedRowHeight="210" sectionHeaderHeight="28" sectionFooterHeight="28" id="s8C-Gy-PWK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="210" estimatedRowHeight="210" sectionHeaderHeight="40" estimatedSectionHeaderHeight="40" sectionFooterHeight="28" id="s8C-Gy-PWK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
