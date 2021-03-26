@@ -58,7 +58,6 @@ import UIKit
         let labelCenterXConstraint = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
         let labelCenterYConstraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 6)
         
-        updateSelected()
         selectionIndicator.backgroundColor = UIColor.init(named: "Active")
         selectionIndicator.translatesAutoresizingMaskIntoConstraints = false
         addSubview(selectionIndicator)
@@ -68,12 +67,13 @@ import UIKit
         let selectionIndicatorWidthConstraint = NSLayoutConstraint(item: selectionIndicator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 24)
         let selectionIndicatorHeightConstraint = NSLayoutConstraint(item: selectionIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 2)
 
-        
         NSLayoutConstraint.activate([labelCenterXConstraint,
                                      labelCenterYConstraint,
                                      selectionIndicatorBottomConstraint,
                                      selectionIndicatorCenterXConstraint,
                                      selectionIndicatorWidthConstraint,
-                                     selectionIndicatorHeightConstraint])
+                                     selectionIndicatorHeightConstraint
+        ])
+        updateSelected()
     }
 }
