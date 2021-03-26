@@ -59,7 +59,7 @@ class ImageProviderTests: XCTestCase {
                 }
             }
         }
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 4, handler: nil)
     }
     
 }

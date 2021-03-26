@@ -55,21 +55,39 @@
                                             <constraint firstItem="ugY-ef-s3Y" firstAttribute="leading" secondItem="1UU-ee-bAg" secondAttribute="leading" constant="12" id="pTF-vF-6Rj"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j61-1b-xa9" userLabel="Tab Bar">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="j61-1b-xa9" userLabel="Tab Bar">
                                         <rect key="frame" x="0.0" y="44" width="414" height="40"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOE-fb-sNA">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="some custom views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zws-6b-GgM">
-                                                        <rect key="frame" x="125" y="-8" width="100" height="40"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOE-fb-sNA" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="250" constant="138" id="iAt-dz-fYs"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Upcoming"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXL-rT-uUv" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
+                                                <rect key="frame" x="138" y="0.0" width="138" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="250" constant="138" id="zhm-lQ-EOV"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="ARCHIVED"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZd-fO-zJn" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
+                                                <rect key="frame" x="276" y="0.0" width="138" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="250" constant="138" id="CeX-ka-YNI"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="OPTIONS"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <constraints>
@@ -153,21 +171,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Hn-xt-bKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="533" y="-617"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="9hk-hp-r6h">
-            <objects>
-                <viewController id="vgW-In-0Ve" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FDn-or-iLY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="qmX-3a-3I2"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v0T-Eb-B58" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-252" y="-220"/>
         </scene>
     </scenes>
     <resources>
