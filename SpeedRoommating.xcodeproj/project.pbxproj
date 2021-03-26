@@ -15,6 +15,12 @@
 		60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F57260A96E30060091B /* ImgxUrlProvider.swift */; };
 		60213F5A260A98250060091B /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F59260A98250060091B /* Config.swift */; };
 		60213F60260AA8050060091B /* ViewableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F5F260AA8050060091B /* ViewableEventTests.swift */; };
+		60213F66260AB9AF0060091B /* EventTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */; };
+		60213F6A260ABDA70060091B /* IEventTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F69260ABDA70060091B /* IEventTableDataSource.swift */; };
+		60213F6E260AC3420060091B /* EventTableDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F6D260AC3420060091B /* EventTableDataSourceTests.swift */; };
+		60213F70260D61580060091B /* MockSpeedRoommatingEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F6F260D61580060091B /* MockSpeedRoommatingEventProvider.swift */; };
+		60213F73260D65B60060091B /* MockImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F72260D65B60060091B /* MockImageProviderTests.swift */; };
+		60213F79260D709A0060091B /* IEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F78260D709A0060091B /* IEventTableViewCell.swift */; };
 		6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */; };
 		6027E0E02603E6C5008FE8A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */; };
 		6027E0E22603E6C5008FE8A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0E12603E6C5008FE8A4 /* ViewController.swift */; };
@@ -61,6 +67,12 @@
 		60213F57260A96E30060091B /* ImgxUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgxUrlProvider.swift; sourceTree = "<group>"; };
 		60213F59260A98250060091B /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		60213F5F260AA8050060091B /* ViewableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewableEventTests.swift; sourceTree = "<group>"; };
+		60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewDataSource.swift; sourceTree = "<group>"; };
+		60213F69260ABDA70060091B /* IEventTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventTableDataSource.swift; sourceTree = "<group>"; };
+		60213F6D260AC3420060091B /* EventTableDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableDataSourceTests.swift; sourceTree = "<group>"; };
+		60213F6F260D61580060091B /* MockSpeedRoommatingEventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSpeedRoommatingEventProvider.swift; sourceTree = "<group>"; };
+		60213F72260D65B60060091B /* MockImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageProviderTests.swift; sourceTree = "<group>"; };
+		60213F78260D709A0060091B /* IEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventTableViewCell.swift; sourceTree = "<group>"; };
 		6027E0DA2603E6C5008FE8A4 /* SpeedRoommating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedRoommating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,8 +133,9 @@
 		60213F4A260A86260060091B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				60213F51260A96240060091B /* CdnUrlProvider */,
 				60213F5E260AA7C90060091B /* DataDecorators */,
-				60213F51260A96240060091B /* ICdnUrlProvider */,
+				60213F64260AB9770060091B /* EventTableDataSource */,
 				60587DEC2606706C00A41C2E /* ImageProvider */,
 			);
 			path = ViewModel;
@@ -144,13 +157,13 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
-		60213F51260A96240060091B /* ICdnUrlProvider */ = {
+		60213F51260A96240060091B /* CdnUrlProvider */ = {
 			isa = PBXGroup;
 			children = (
 				60213F52260A96500060091B /* Interface */,
 				60213F53260A96580060091B /* Implementation */,
 			);
-			path = ICdnUrlProvider;
+			path = CdnUrlProvider;
 			sourceTree = "<group>";
 		};
 		60213F52260A96500060091B /* Interface */ = {
@@ -173,18 +186,11 @@
 			isa = PBXGroup;
 			children = (
 				60213F61260AA8410060091B /* Mocks */,
-				60213F5D260AA7960060091B /* ViewableEvent */,
-				60213F5C260AA7770060091B /* KingfisherImageProvider */,
+				60213F6C260AC3020060091B /* EventDataSource */,
 				60587DF226067ACE00A41C2E /* ImageProvider */,
+				60213F5D260AA7960060091B /* ViewableEvent */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		60213F5C260AA7770060091B /* KingfisherImageProvider */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = KingfisherImageProvider;
 			sourceTree = "<group>";
 		};
 		60213F5D260AA7960060091B /* ViewableEvent */ = {
@@ -207,8 +213,68 @@
 		60213F61260AA8410060091B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				60213F6F260D61580060091B /* MockSpeedRoommatingEventProvider.swift */,
+				60213F72260D65B60060091B /* MockImageProviderTests.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		60213F64260AB9770060091B /* EventTableDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				60213F67260ABD8C0060091B /* Interface */,
+				60213F68260ABD930060091B /* Implementation */,
+			);
+			path = EventTableDataSource;
+			sourceTree = "<group>";
+		};
+		60213F67260ABD8C0060091B /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				60213F69260ABDA70060091B /* IEventTableDataSource.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		60213F68260ABD930060091B /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		60213F6B260AC28C0060091B /* SpeedRoommatingEvent */ = {
+			isa = PBXGroup;
+			children = (
+				60DE47B92607F75800FC3E5B /* Implementation */,
+				60DE47B82607F74B00FC3E5B /* Interface */,
+			);
+			path = SpeedRoommatingEvent;
+			sourceTree = "<group>";
+		};
+		60213F6C260AC3020060091B /* EventDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				60213F6D260AC3420060091B /* EventTableDataSourceTests.swift */,
+			);
+			path = EventDataSource;
+			sourceTree = "<group>";
+		};
+		60213F76260D70690060091B /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				60213F78260D709A0060091B /* IEventTableViewCell.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		60213F77260D70710060091B /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				606BA85826068CAE0063250A /* EventTableViewCell.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		6027E0D12603E6C5008FE8A4 = {
@@ -236,7 +302,6 @@
 			children = (
 				60213F59260A98250060091B /* Config.swift */,
 				60DE47B52607F62A00FC3E5B /* DataModel */,
-				609B96F72607749700E96AFF /* RoommatingEventProvider */,
 				60213F4A260A86260060091B /* ViewModel */,
 				606BA85426068BC30063250A /* View */,
 				60E0FC0E26069D110022F25C /* ViewController */,
@@ -307,8 +372,9 @@
 		606BA85426068BC30063250A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				60213F76260D70690060091B /* Interface */,
+				60213F77260D70710060091B /* Implementation */,
 				606BA85626068C100063250A /* EventTableViewCell.xib */,
-				606BA85826068CAE0063250A /* EventTableViewCell.swift */,
 				60E0FC0C260695B60022F25C /* TransluscentRoundedLabel.swift */,
 			);
 			path = View;
@@ -343,8 +409,8 @@
 		60DE47B52607F62A00FC3E5B /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				60DE47B82607F74B00FC3E5B /* Interface */,
-				60DE47B92607F75800FC3E5B /* Implementation */,
+				609B96F72607749700E96AFF /* RoommatingEventProvider */,
+				60213F6B260AC28C0060091B /* SpeedRoommatingEvent */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -527,6 +593,7 @@
 				60587DF12606734400A41C2E /* IImageProvider.swift in Sources */,
 				60E0FC0D260695B60022F25C /* TransluscentRoundedLabel.swift in Sources */,
 				60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */,
+				60213F6A260ABDA70060091B /* IEventTableDataSource.swift in Sources */,
 				60213F5A260A98250060091B /* Config.swift in Sources */,
 				60E0FC1026069D380022F25C /* EventListTableViewController.swift in Sources */,
 				606BA85926068CAE0063250A /* EventTableViewCell.swift in Sources */,
@@ -535,6 +602,8 @@
 				60213F50260A92C40060091B /* ViewableEvent.swift in Sources */,
 				60DE47B72607F63F00FC3E5B /* ISpeedRoommatingEvent.swift in Sources */,
 				609B96F9260774C800E96AFF /* ISpeedRoommatingEventProvider.swift in Sources */,
+				60213F66260AB9AF0060091B /* EventTableViewDataSource.swift in Sources */,
+				60213F79260D709A0060091B /* IEventTableViewCell.swift in Sources */,
 				6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */,
 				60213F55260A966F0060091B /* ICdnUrlProvider.swift in Sources */,
 				60587DEE260670AF00A41C2E /* KingfisherImageProvider.swift in Sources */,
@@ -547,8 +616,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60213F73260D65B60060091B /* MockImageProviderTests.swift in Sources */,
+				60213F70260D61580060091B /* MockSpeedRoommatingEventProvider.swift in Sources */,
 				60213F60260AA8050060091B /* ViewableEventTests.swift in Sources */,
 				60587DF426067B0400A41C2E /* KingfisherImageProviderTests.swift in Sources */,
+				60213F6E260AC3420060091B /* EventTableDataSourceTests.swift in Sources */,
 				6027E0F52603E6C8008FE8A4 /* SpeedRoommatingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
