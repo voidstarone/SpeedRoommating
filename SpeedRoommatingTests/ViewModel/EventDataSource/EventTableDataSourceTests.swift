@@ -76,13 +76,15 @@ class EventTableDataSourceTests: XCTestCase {
             _ in
             let cellFor0_0 = self.eventTableDataSource.tableView(self.tableView, cellForRowAt: indexPath0_0) as! IEventTableViewCell
             
-            XCTAssertEqual(cellFor0_0.locationLabel.text, "Russia")
-            XCTAssertEqual(cellFor0_0.venueLabel.text, "Winter Palace")
-            
-            promiseToFetchEvents.fulfill()
+            sleep(1) // nasty; not sure of the best way to delete this
+            DispatchQueue.main.async {
+                XCTAssertEqual(cellFor0_0.locationLabel.text, "Russia")
+                XCTAssertEqual(cellFor0_0.venueLabel.text, "Winter Palace")
+                promiseToFetchEvents.fulfill()
+            }
         }
         
-        waitForExpectations(timeout: 90, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
     }
 
 }

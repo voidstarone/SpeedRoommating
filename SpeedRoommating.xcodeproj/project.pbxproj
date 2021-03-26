@@ -20,7 +20,6 @@
 		60213F6E260AC3420060091B /* EventTableDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F6D260AC3420060091B /* EventTableDataSourceTests.swift */; };
 		60213F70260D61580060091B /* MockSpeedRoommatingEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F6F260D61580060091B /* MockSpeedRoommatingEventProvider.swift */; };
 		60213F73260D65B60060091B /* MockImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F72260D65B60060091B /* MockImageProviderTests.swift */; };
-		60213F75260D65F60060091B /* frederick-douglass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 60213F74260D65F60060091B /* frederick-douglass.jpg */; };
 		60213F79260D709A0060091B /* IEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60213F78260D709A0060091B /* IEventTableViewCell.swift */; };
 		6027E0DE2603E6C5008FE8A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */; };
 		6027E0E02603E6C5008FE8A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6027E0DF2603E6C5008FE8A4 /* SceneDelegate.swift */; };
@@ -73,7 +72,6 @@
 		60213F6D260AC3420060091B /* EventTableDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableDataSourceTests.swift; sourceTree = "<group>"; };
 		60213F6F260D61580060091B /* MockSpeedRoommatingEventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSpeedRoommatingEventProvider.swift; sourceTree = "<group>"; };
 		60213F72260D65B60060091B /* MockImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageProviderTests.swift; sourceTree = "<group>"; };
-		60213F74260D65F60060091B /* frederick-douglass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "frederick-douglass.jpg"; sourceTree = "<group>"; };
 		60213F78260D709A0060091B /* IEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventTableViewCell.swift; sourceTree = "<group>"; };
 		6027E0DA2603E6C5008FE8A4 /* SpeedRoommating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedRoommating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6027E0DD2603E6C5008FE8A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -263,14 +261,6 @@
 			path = EventDataSource;
 			sourceTree = "<group>";
 		};
-		60213F71260D654F0060091B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				60213F74260D65F60060091B /* frederick-douglass.jpg */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		60213F76260D70690060091B /* Interface */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,7 +320,6 @@
 		6027E0F32603E6C8008FE8A4 /* SpeedRoommatingTests */ = {
 			isa = PBXGroup;
 			children = (
-				60213F71260D654F0060091B /* Resources */,
 				60213F5B260AA7660060091B /* ViewModel */,
 				6027E0F42603E6C8008FE8A4 /* SpeedRoommatingTests.swift */,
 				6027E0F62603E6C8008FE8A4 /* Info.plist */,
@@ -583,7 +572,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60213F75260D65F60060091B /* frederick-douglass.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

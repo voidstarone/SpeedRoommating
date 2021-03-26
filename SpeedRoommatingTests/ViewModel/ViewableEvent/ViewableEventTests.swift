@@ -58,7 +58,7 @@ class ViewableEventTests: XCTestCase {
         let urlParts = getUrlComponents(from: imageUrl800x600)
         let queryItems = urlParts["queryItems"] as! [String: String]
 
-        XCTAssertEqual(urlParts["path"] as! String, "8899")
+        XCTAssertEqual(urlParts["path"] as! String, "/8899")
         XCTAssertEqual(queryItems["h"]!, "600")
         XCTAssertEqual(queryItems["w"]!, "800")
         XCTAssertEqual(queryItems["fit"]!, "crop")

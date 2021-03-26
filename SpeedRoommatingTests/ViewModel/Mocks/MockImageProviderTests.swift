@@ -12,7 +12,7 @@ import UIKit
 
 struct MockImageProvider : IImageProvider {
     func requestImage(atUrl imageUrl: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
-        onComplete(.success(#imageLiteral(resourceName: "frederick-douglass.jpg")))
+        onComplete(.success(UIImage(systemName: "pencil.circle")))
     }
     
     func deleteCache(onComplete: @escaping () -> Void) {}
