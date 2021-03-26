@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EventTableViewCell : UITableViewCell {
+class EventTableViewCell : UITableViewCell, IEventTableViewCell {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var costLabel: TransluscentRoundedLabel!

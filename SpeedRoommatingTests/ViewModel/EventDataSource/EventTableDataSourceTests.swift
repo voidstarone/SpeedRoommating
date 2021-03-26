@@ -25,6 +25,8 @@ class EventTableDataSourceTests: XCTestCase {
         eventTableDataSource = EventTableViewDataSource()
         eventTableDataSource.imageProvider = mockImageProvider
         eventTableDataSource.eventProvider = mockEventProvider
+        
+        tableView.register(UINib(nibName: "EventTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "EventTableViewCell")
     }
 
     override func tearDown() {
@@ -33,7 +35,7 @@ class EventTableDataSourceTests: XCTestCase {
     }
     
     func testNumberOfSections() {
-        let promiseToFetchEvents = expectation(description: "fetch rows")
+        let promiseToFetchEvents = expectation(description: "fetch events")
 
         eventTableDataSource.fetchEventsFromEventProvider {
             _ in
@@ -54,18 +56,33 @@ class EventTableDataSourceTests: XCTestCase {
             
             let numRows1 = self.eventTableDataSource.tableView(self.tableView,
                                                                numberOfRowsInSection: 1)
-            
             XCTAssertEqual(numRows1, 1)
             
             let numRows2 = self.eventTableDataSource.tableView(self.tableView,
                                                                numberOfRowsInSection: 2)
-            
             XCTAssertEqual(numRows2, 1)
             
             promiseToFetchEvents.fulfill()
         }
         waitForExpectations(timeout: 1, handler: nil)
-
     }
     
+    func testGetRow() {
+        let promiseToFetchEvents = expectation(description: "fetch events")
+
+        let indexPath0_0 = IndexPath(row: 0, section: 0)
+        
+        eventTableDataSource.fetchEventsFromEventProvider {
+            _ in
+            let cellFor0_0 = self.eventTableDataSource.tableView(self.tableView, cellForRowAt: indexPath0_0) as! IEventTableViewCell
+            
+            XCTAssertEqual(cellFor0_0.locationLabel.text, "Russia")
+            XCTAssertEqual(cellFor0_0.venueLabel.text, "Winter Palace")
+            
+            promiseToFetchEvents.fulfill()
+        }
+        
+        waitForExpectations(timeout: 90, handler: nil)
+    }
+
 }
