@@ -49,7 +49,9 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
         let buttonCenterXConstraint = NSLayoutConstraint(item: retryButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
         let buttonHeightConstraint = NSLayoutConstraint(item: retryButton, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
         
-        NSLayoutConstraint.activate([buttonTopConstraint, buttonCenterXConstraint, buttonHeightConstraint])
+        NSLayoutConstraint.activate([buttonTopConstraint,
+                                     buttonCenterXConstraint,
+                                     buttonHeightConstraint])
     }
     
     func setupWithoutButton() {
@@ -82,7 +84,10 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
         let errorDescriptionViewLeadingConstraint = NSLayoutConstraint(item: errorDescriptionLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 24)
         let errorDescriptionViewTrailingConstraint = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: errorDescriptionLabel, attribute: .trailing, multiplier: 1, constant: 24)
         let errorDescriptionViewBottomConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: errorDescriptionLabel, attribute: .bottom, multiplier: 1, constant: 24)
-        NSLayoutConstraint.activate([errorDescriptionViewTopConstraint, errorDescriptionViewLeadingConstraint, errorDescriptionViewTrailingConstraint, errorDescriptionViewBottomConstraint])
+        NSLayoutConstraint.activate([errorDescriptionViewTopConstraint,
+                                     errorDescriptionViewLeadingConstraint,
+                                     errorDescriptionViewTrailingConstraint,
+                                     errorDescriptionViewBottomConstraint])
         
     }
 }

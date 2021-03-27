@@ -985,7 +985,7 @@
 			repositoryURL = "https://github.com/voidstarone/SpareRoomEventRepository.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.3;
+				minimumVersion = 0.3.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

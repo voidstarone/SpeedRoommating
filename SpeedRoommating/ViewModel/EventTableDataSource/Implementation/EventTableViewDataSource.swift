@@ -37,42 +37,77 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             }
             self.eventProvider.getEventsByYearAndMonth(onOrAfterDate: Date()) {
                 result in
+                var maybeError: Error? = nil
                 switch(result) {
                 case let .success(groupedEvents):
-                    self.eventSplitByMonth = []
-                    self.sectionMonthNumbers = []
-                    let sortedYears = Array(groupedEvents.keys).sorted(by: <)
-                    for yearNumber in sortedYears {
-                        let year = groupedEvents[yearNumber]!
-                        let sortedMonths = groupedEvents[yearNumber]!.keys.sorted(by: <)
-                        self.sectionMonthNumbers!.append(contentsOf: sortedMonths)
-                        for monthNumber in sortedMonths {
-                            let month = year[monthNumber]!
-                            self.eventSplitByMonth?.append(month.map { ViewableEvent(event: $0) })
-                        }
-                    }
-                    DispatchQueue.main.async {
-                        onComplete(nil)
-                    }
+                    self.setGroupEvents(groupedEvents: groupedEvents)
                     break
                 case let .failure(error):
-                    DispatchQueue.main.async {
-                        self.firstCell?.backgroundColor = .blue
-                        self.firstCell = self.createNoNetworkCell()
-                    }
-                    onComplete(error)
-                    break
+                    self.handleFetchError(error)
+                    maybeError = error
                 }
-                DispatchQueue.main.async {
-                    self.controlledTableView.reloadData()
-                }
+                onComplete(maybeError)
+            }
+            DispatchQueue.main.async {
+                self.controlledTableView.reloadData()
+            }
+        }
+    }
+    
+    private func handleFetchError(_ error: Error) {
+        guard let usableError = error as? RoommatingEventProviderError else {
+             DispatchQueue.main.async {
+                 self.firstCell = self.createUnknownErrorCell()
+                 self.controlledTableView.reloadData()
+             }
+            return
+         }
+         switch usableError {
+         case .network:
+             DispatchQueue.main.async {
+                 self.firstCell = self.createNoNetworkCell()
+                 self.controlledTableView.reloadData()
+             }
+             break
+         default:
+             DispatchQueue.main.async {
+                 self.firstCell = self.createUnknownErrorCell()
+                 self.controlledTableView.reloadData()
+             }
+         }
+    }
+
+    private func setGroupEvents(groupedEvents: [Int : [Int : [ISpeedRoommatingEvent]]]) {
+        self.eventSplitByMonth = []
+        self.sectionMonthNumbers = []
+        let sortedYears = Array(groupedEvents.keys).sorted(by: <)
+        for yearNumber in sortedYears {
+            let year = groupedEvents[yearNumber]!
+            let sortedMonths = groupedEvents[yearNumber]!.keys.sorted(by: <)
+            self.sectionMonthNumbers!.append(contentsOf: sortedMonths)
+            for monthNumber in sortedMonths {
+                let month = year[monthNumber]!
+                self.eventSplitByMonth?.append(month.map { ViewableEvent(event: $0) })
             }
         }
     }
     
     private func createNoNetworkCell() -> IEventTableViewErrorCell {
         let cell = EventTableViewErrorCell()
-        cell.setImage(UIImage(named: "IconOffline")!, title: "No connection", description: "You appear to be offline. Check your mobile or wifi connection and try again.")
+        cell.setImage(UIImage(named: "IconOffline")!,
+                      title: "No connection",
+                      description: "You appear to be offline. Check your mobile or wifi connection and try again.")
+        cell.setButton(text: "Retry") {
+            self.fetchEventsFromEventProvider {_ in }
+        }
+        return cell
+    }
+    
+    private func createUnknownErrorCell() -> IEventTableViewErrorCell {
+        let cell = EventTableViewErrorCell()
+        cell.setImage(UIImage(named: "IconError")!,
+                      title: "Something's gone wrong",
+                      description: "We couldn't load the upcoming events. Check your cellular or wifi connection and try again.")
         cell.setButton(text: "Retry") {
             self.fetchEventsFromEventProvider {_ in }
         }

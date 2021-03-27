@@ -12,6 +12,8 @@ import SpeedRoommatingEventRepository
 enum RoommatingEventProviderError : Error {
     case notPreloaded
     case dealloc
+    case network
+    case unknown
 }
 
 class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
@@ -25,7 +27,14 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
             [weak self] result in
             switch(result) {
             case let .failure(error):
-                onComplete(error)
+                // This should be abstracted more. Accessing errors straight from the API adapter is gross
+                let repoError = error as! SpeedRoommatingEventSourceJsonApiAdapterError
+                switch repoError {
+                case .timeout:
+                    onComplete(RoommatingEventProviderError.network)
+                default:
+                    onComplete(RoommatingEventProviderError.unknown)
+                }
                 return
             case let .success(events):
                 self?.eventCache = events.map {
