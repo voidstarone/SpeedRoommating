@@ -32,6 +32,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1eR-Ok-AtH">
                                         <rect key="frame" x="0.0" y="0.0" width="510" height="312"/>
+                                        <color key="backgroundColor" name="PanelBackground"/>
                                     </imageView>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaf-Ph-kv8" userLabel="Foreground">
                                         <rect key="frame" x="0.0" y="0.0" width="510" height="312"/>
@@ -55,8 +56,8 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytB-wK-v9g" customClass="TransluscentRoundedLabel" customModule="SpeedRoommating" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="16" width="51.5" height="27.5"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytB-wK-v9g" customClass="TransluscentRoundedLabel" customModule="SpeedRoommating" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="16" width="56" height="28.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="FREE"/>
@@ -133,6 +134,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="PanelBackground">
+            <color red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Silver">
             <color red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
