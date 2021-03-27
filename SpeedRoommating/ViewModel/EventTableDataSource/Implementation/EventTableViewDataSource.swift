@@ -14,7 +14,11 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
 
     var imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
-    var controlledTableView: UITableView!
+    var controlledTableView: UITableView! {
+        didSet {
+            controlledTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
+        }
+    }
     var firstCell: IEventTableViewErrorCell?
     let monitor = NWPathMonitor()
     

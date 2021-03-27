@@ -9,11 +9,13 @@
 import UIKit
 import SpeedRoommatingEventRepository
 
-class ViewController: UIViewController {
+class EventListsViewController: UIViewController {
 
+    @IBOutlet weak var pagingScrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         let ep = SpeedRoommatingEventProvider()
 
         ep.preloadEventsOnOrAfter(date: Date()) {_ in }
