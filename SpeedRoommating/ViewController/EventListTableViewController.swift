@@ -17,10 +17,12 @@ class EventListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         tableView.dataSource = eventsDataSource
         tableView.delegate = eventsDataSource
+        eventsDataSource.controlledTableView = self.tableView
         tableView.estimatedRowHeight = 210
         eventsDataSource.fetchEventsFromEventProvider {
-            error in
-            if error != nil {
+            potentialError in
+
+            if let error = potentialError {
                 print(error)
                 return
             }

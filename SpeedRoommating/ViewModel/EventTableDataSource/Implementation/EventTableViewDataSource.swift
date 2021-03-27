@@ -8,11 +8,15 @@
 
 import Foundation
 import UIKit
+import Network
 
 public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
 
     var imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
+    var controlledTableView: UITableView!
+    var firstCell: IEventTableViewErrorCell?
+    let monitor = NWPathMonitor()
     
     private var eventSplitByMonth: [[IViewableEvent]]?
     private var sectionMonthNumbers: [Int]?
@@ -23,7 +27,14 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     
     func fetchEventsFromEventProvider(onComplete: @escaping (Error?) -> Void) {
         let fetchEventsThread = DispatchQueue(label: "fetchEvents", qos: .background)
+        firstCell = nil
         fetchEventsThread.async {
+            let monitor = NWPathMonitor()
+            monitor.pathUpdateHandler = { path in
+                if path.status != .satisfied {
+                    self.firstCell = self.createNoNetworkCell()
+                }
+            }
             self.eventProvider.getEventsByYearAndMonth(onOrAfterDate: Date()) {
                 result in
                 switch(result) {
@@ -45,12 +56,27 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                     }
                     break
                 case let .failure(error):
+                    DispatchQueue.main.async {
+                        self.firstCell?.backgroundColor = .blue
+                        self.firstCell = self.createNoNetworkCell()
+                    }
                     onComplete(error)
-                    //error
                     break
+                }
+                DispatchQueue.main.async {
+                    self.controlledTableView.reloadData()
                 }
             }
         }
+    }
+    
+    private func createNoNetworkCell() -> IEventTableViewErrorCell {
+        let cell = EventTableViewErrorCell()
+        cell.setImage(UIImage(named: "IconOffline")!, title: "No connection", description: "You appear to be offline. Check your mobile or wifi connection and try again.")
+        cell.setButton(text: "Retry") {
+            self.fetchEventsFromEventProvider {_ in }
+        }
+        return cell
     }
 
     public func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,18 +88,23 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
         let thisSectionsEventsCount = self.eventSplitByMonth?[section].count
         return thisSectionsEventsCount ?? 10
     }
-
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+    private func createFilledCell(for tableView: UITableView, eventForCell: ViewableEvent, at indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell", for: indexPath) as! EventTableViewCell
+        let durationText = eventForCell.durationText
+        let shortReadableDate = eventForCell.dateAsShortReadable
+        
         let heightConstraint = NSLayoutConstraint(item: cell, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 210)
         heightConstraint.isActive = true
+
         let imageTargetSize = cell.frame.size
-        
-        guard let eventForCell = eventSplitByMonth?[indexPath.section][indexPath.row] else {
-            // placeholder
-            return cell
+
+        DispatchQueue.main.async {
+            cell.locationLabel.text = eventForCell.location
+            cell.venueLabel.text = eventForCell.venue
+            cell.costLabel.labelText = eventForCell.cost
+            cell.dateLabel.text = shortReadableDate
+            cell.timeLabel.text = durationText
         }
         
         let fetchImageThread = DispatchQueue(label: "fetchImages", qos: .background)
@@ -82,19 +113,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             if (self == nil) {
                 return
             }
-            
-            let durationText = eventForCell.durationText
-            let shortReadableDate = eventForCell.dateAsShortReadable
-            
-            DispatchQueue.main.async {
-                cell.locationLabel.text = eventForCell.location
-                cell.venueLabel.text = eventForCell.venue
-                cell.costLabel.labelText = eventForCell.cost
-                cell.dateLabel.text = shortReadableDate
-                cell.timeLabel.text = durationText
-            }
-            
-            self!.imageProvider.requestImage(atUrl: eventForCell.imageUrlAt(size: imageTargetSize)) {
+            self?.imageProvider.requestImage(atUrl: eventForCell.imageUrlAt(size: imageTargetSize)) {
                 result in
                 switch result {
                 case let .failure(error):
@@ -108,14 +127,41 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                 }
             }
         }
+        
+        return cell
+    }
+
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 && indexPath.row == 0 {
+            if let returnCell = firstCell {
+                return returnCell
+            }
+        }
+        
+        guard let eventForCell = eventSplitByMonth?[indexPath.section][indexPath.row] as? ViewableEvent else {
+            // placeholder
+            return UITableViewCell()
+        }
+        
+        let cell = createFilledCell(for: tableView, eventForCell: eventForCell, at:indexPath)
         return cell
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            if let returnCell = firstCell {
+                return returnCell.rowHeight
+            }
+        }
         return 210
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if eventSplitByMonth == nil || eventSplitByMonth?.count == 0 {
+            return 0
+        }
         return 40
     }
     
