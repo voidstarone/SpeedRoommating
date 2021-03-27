@@ -32,7 +32,10 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             let monitor = NWPathMonitor()
             monitor.pathUpdateHandler = { path in
                 if path.status != .satisfied {
-                    self.firstCell = self.createNoNetworkCell()
+                    DispatchQueue.main.async {
+                        self.firstCell = self.createNoNetworkCell()
+                        self.controlledTableView.reloadData()
+                    }
                 }
             }
             self.eventProvider.getEventsByYearAndMonth(onOrAfterDate: Date()) {
@@ -40,7 +43,12 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                 var maybeError: Error? = nil
                 switch(result) {
                 case let .success(groupedEvents):
-                    self.setGroupEvents(groupedEvents: groupedEvents)
+                    if !self.setGroupEvents(groupedEvents: groupedEvents) {
+                        DispatchQueue.main.async {
+                            self.firstCell = self.createEmptyListCell()
+                            self.controlledTableView.reloadData()
+                        }
+                    }
                     break
                 case let .failure(error):
                     self.handleFetchError(error)
@@ -77,7 +85,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
          }
     }
 
-    private func setGroupEvents(groupedEvents: [Int : [Int : [ISpeedRoommatingEvent]]]) {
+    private func setGroupEvents(groupedEvents: [Int : [Int : [ISpeedRoommatingEvent]]]) -> Bool {
         self.eventSplitByMonth = []
         self.sectionMonthNumbers = []
         let sortedYears = Array(groupedEvents.keys).sorted(by: <)
@@ -90,6 +98,18 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                 self.eventSplitByMonth?.append(month.map { ViewableEvent(event: $0) })
             }
         }
+        DispatchQueue.main.async {
+            self.controlledTableView.reloadData()
+        }
+        return self.eventSplitByMonth?.count != 0
+    }
+    
+    private func createEmptyListCell() -> IEventTableViewErrorCell {
+        let cell = EventTableViewErrorCell()
+        cell.setImage(UIImage(named: "IconList")!,
+                      title: "Nothing to show",
+                      description: "No upcoming events are scheduled. If this is incorrect, get in touch with our CORE team.")
+        return cell
     }
     
     private func createNoNetworkCell() -> IEventTableViewErrorCell {

@@ -21,12 +21,10 @@ class EventListTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 210
         eventsDataSource.fetchEventsFromEventProvider {
             potentialError in
-
             if let error = potentialError {
                 print(error)
                 return
             }
-            self.tableView.reloadData()
         }
     }
     
