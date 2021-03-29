@@ -19,16 +19,11 @@ class EventListTableViewController: UITableViewController {
         eventsDataSource.controlledTableView = self.tableView
         tableView.estimatedRowHeight = 210
         eventsDataSource.fetchEventsFromEventProvider {
-            potentialError in
-            if let error = potentialError {
-                print(error)
-                return
-            }
+            _ in
         }
     }
     
     private func isErrorState() {
         return
     }
-
 }

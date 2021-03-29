@@ -13,10 +13,12 @@ import UIKit
     
     var label = UILabel()
     let selectionIndicator = UILabel()
+    let button = UIButton()
     
     @IBInspectable var isSelected: Bool = false {
         didSet {
             updateSelected()
+            setNeedsDisplay()
         }
     }
     
@@ -74,6 +76,17 @@ import UIKit
                                      selectionIndicatorWidthConstraint,
                                      selectionIndicatorHeightConstraint
         ])
+        button.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(button)
+        let buttonTopConstraint = NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+        let buttonLeadingConstraint = NSLayoutConstraint(item: button, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        let buttonTrailingConstraint = NSLayoutConstraint(item: button, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        let buttonBottomConstraint = NSLayoutConstraint(item: button, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+        
+        NSLayoutConstraint.activate([buttonTopConstraint,
+                                     buttonLeadingConstraint,
+                                     buttonTrailingConstraint,
+                                     buttonBottomConstraint])
         updateSelected()
     }
 }

@@ -62,7 +62,6 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             } else if self.whichEventsToShow == .past {
                 self.eventProvider.getEventsByYearAndMonth(beforeDate: Date()) {
                     result in
-                    print(result)
                     returnResult = self.handleEventProviderResult(result)
                 }
             }
@@ -207,8 +206,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             self?.imageProvider.requestImage(atUrl: eventForCell.imageUrlAt(size: imageTargetSize)) {
                 result in
                 switch result {
-                case let .failure(error):
-                    print(error)
+                case .failure:
                     // TODO: no big deal; just get a placeholder
                     break
                 case let .success(image):

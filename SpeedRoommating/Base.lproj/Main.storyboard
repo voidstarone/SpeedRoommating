@@ -105,9 +105,6 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOE-fb-sNA" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" priority="250" constant="138" id="iAt-dz-fYs"/>
-                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Upcoming"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
@@ -116,9 +113,6 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXL-rT-uUv" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
                                                 <rect key="frame" x="138" y="0.0" width="138" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" priority="250" constant="138" id="zhm-lQ-EOV"/>
-                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="ARCHIVED"/>
                                                 </userDefinedRuntimeAttributes>
@@ -126,9 +120,6 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZd-fO-zJn" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
                                                 <rect key="frame" x="276" y="0.0" width="138" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" priority="250" constant="138" id="CeX-ka-YNI"/>
-                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="OPTIONS"/>
                                                 </userDefinedRuntimeAttributes>
@@ -136,6 +127,9 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="4SX-Zf-inL"/>
+                                            <constraint firstItem="vZd-fO-zJn" firstAttribute="width" secondItem="j61-1b-xa9" secondAttribute="width" multiplier="0.333333" id="9vH-Su-j8E"/>
+                                            <constraint firstItem="QOE-fb-sNA" firstAttribute="width" secondItem="j61-1b-xa9" secondAttribute="width" multiplier="0.333333" id="WfS-HC-iYM"/>
+                                            <constraint firstItem="FXL-rT-uUv" firstAttribute="width" secondItem="j61-1b-xa9" secondAttribute="width" multiplier="0.333333" id="XNn-mj-igi"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -165,9 +159,12 @@
                     </view>
                     <connections>
                         <outlet property="archivedEventListView" destination="Mhp-PO-ucJ" id="AGC-PP-Lq7"/>
+                        <outlet property="archivedTab" destination="FXL-rT-uUv" id="fYw-b5-S4L"/>
+                        <outlet property="optionsTab" destination="vZd-fO-zJn" id="Bvc-1p-MeE"/>
                         <outlet property="optionsView" destination="1ro-TD-ULw" id="PcK-mk-mfH"/>
-                        <outlet property="pagingScrollView" destination="Ehy-1C-4vy" id="7XH-Yr-o9b"/>
+                        <outlet property="pagingScrollView" destination="Ehy-1C-4vy" id="2cE-LA-BQb"/>
                         <outlet property="upcomingEventListView" destination="kZE-0L-3YC" id="4C3-Hh-ZCS"/>
+                        <outlet property="upcomingTab" destination="QOE-fb-sNA" id="Y67-2n-nUV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0P-q7-GSL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
