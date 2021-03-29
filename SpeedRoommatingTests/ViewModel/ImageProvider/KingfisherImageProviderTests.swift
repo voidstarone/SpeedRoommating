@@ -52,7 +52,9 @@ class ImageProviderTests: XCTestCase {
                     
                     switch result {
                     case .success:
-                        willReturnImage.fulfill()
+                        DispatchQueue.main.async {
+                            willReturnImage.fulfill()
+                        }
                     default:
                         break
                     }

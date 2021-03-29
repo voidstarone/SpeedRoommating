@@ -25,6 +25,7 @@ class EventTableDataSourceTests: XCTestCase {
         eventTableDataSource = EventTableViewDataSource()
         eventTableDataSource.imageProvider = mockImageProvider
         eventTableDataSource.eventProvider = mockEventProvider
+        eventTableDataSource.controlledTableView = tableView
         
         tableView.delegate = eventTableDataSource
         tableView.dataSource = eventTableDataSource
@@ -33,11 +34,11 @@ class EventTableDataSourceTests: XCTestCase {
     }
     
     override func tearDown() {
-        
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        eventTableDataSource = nil
+        tableView = nil
     }
     
-    func testNumberOfSections() {
+    func testFutureNumberOfSections() {
         let promiseToFetchEvents = expectation(description: "fetch events")
         
         eventTableDataSource.fetchEventsFromEventProvider {
@@ -49,7 +50,7 @@ class EventTableDataSourceTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testNumberOfSectionsRowsInSection() {
+    func testFutureNumberOfSectionsRowsInSection() {
         let promiseToFetchEvents = expectation(description: "fetch events")
         eventTableDataSource.fetchEventsFromEventProvider {
             _ in
@@ -70,17 +71,14 @@ class EventTableDataSourceTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testGetHeader() {
+    func testFutureGetHeader() {
         let promiseToFetchEvents = expectation(description: "fetch events")
-        
-        let indexPath0_0 = IndexPath(row: 0, section: 0)
-        
+                
         eventTableDataSource.fetchEventsFromEventProvider {
             _ in
-            let firstHeader = self.eventTableDataSource.tableView?(self.tableView, viewForHeaderInSection: 0) as! EventTableHeaderView
-            
-            sleep(1) // nasty; not sure of the best way to delete this
             DispatchQueue.main.async {
+                let firstHeader = self.eventTableDataSource.tableView?(self.tableView, viewForHeaderInSection: 0) as! EventTableHeaderView
+                        
                 XCTAssertEqual(firstHeader.headerLabel.text, "November")
                 promiseToFetchEvents.fulfill()
             }
@@ -89,23 +87,48 @@ class EventTableDataSourceTests: XCTestCase {
         waitForExpectations(timeout: 2, handler: nil)
     }
     
-    func testGetRow() {
+    func testFutureGetRow() {
         let promiseToFetchEvents = expectation(description: "fetch events")
         
         let indexPath0_0 = IndexPath(row: 0, section: 0)
         
         eventTableDataSource.fetchEventsFromEventProvider {
             _ in
-            let cellFor0_0 = self.eventTableDataSource.tableView(self.tableView, cellForRowAt: indexPath0_0) as! IEventTableViewCell
-            
-            sleep(1) // nasty; not sure of the best way to delete this
             DispatchQueue.main.async {
-                XCTAssertEqual(cellFor0_0.locationLabel.text, "Russia")
-                XCTAssertEqual(cellFor0_0.venueLabel.text, "Winter Palace")
-                promiseToFetchEvents.fulfill()
+                let cellFor0_0 = self.eventTableDataSource.tableView(self.tableView, cellForRowAt: indexPath0_0) as! IEventTableViewCell
+                
+                DispatchQueue.main.async {
+                    XCTAssertEqual(cellFor0_0.locationLabel.text, "Russia")
+                    XCTAssertEqual(cellFor0_0.venueLabel.text, "Winter Palace")
+                    promiseToFetchEvents.fulfill()
+                }
             }
         }
         
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+    
+    func testPastNumberOfSectionsRowsInSection() {
+        let promiseToFetchEvents = expectation(description: "fetch events")
+        eventTableDataSource.whichEventsToShow = .past
+        eventTableDataSource.fetchEventsFromEventProvider {
+            _ in
+            DispatchQueue.main.async {
+                let numRows0 = self.eventTableDataSource.tableView(self.tableView,
+                                                                   numberOfRowsInSection: 0)
+                XCTAssertEqual(numRows0, 1)
+                
+                let numRows1 = self.eventTableDataSource.tableView(self.tableView,
+                                                                   numberOfRowsInSection: 1)
+                XCTAssertEqual(numRows1, 1)
+                
+                let numRows2 = self.eventTableDataSource.tableView(self.tableView,
+                                                                   numberOfRowsInSection: 2)
+                XCTAssertEqual(numRows2, 2)
+                
+                promiseToFetchEvents.fulfill()
+            }
+        }
         waitForExpectations(timeout: 2, handler: nil)
     }
     

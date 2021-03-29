@@ -9,7 +9,11 @@
 import Foundation
 
 protocol ISpeedRoommatingEventProvider {
-    mutating func preloadEventsOnOrAfter(date: Date, onComplete: @escaping (Error?) -> Void)
-    mutating func getEventsByYearAndMonth(onOrAfterDate date: Date, onComplete: @escaping (Result<[Int : [Int : [ISpeedRoommatingEvent]]], Error>) -> Void)
+    mutating func preloadEventsOnOrAfter(date: Date,
+                                         onComplete: @escaping (Error?) -> Void)
+    mutating func getEventsByYearAndMonth(onOrAfterDate date: Date,
+                                          onComplete: @escaping (Result<[Int : [Int : [ISpeedRoommatingEvent]]], Error>) -> Void)
+    mutating func getEventsByYearAndMonth(beforeDate date: Date,
+                                          onComplete: @escaping (Result<[Int : [Int : [ISpeedRoommatingEvent]]], Error>) -> Void)
     mutating func deleteCache()
 }
