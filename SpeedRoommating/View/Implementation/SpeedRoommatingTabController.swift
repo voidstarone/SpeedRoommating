@@ -23,17 +23,14 @@ class TabController  {
     }
     
     @objc func buttonPress(sender: UIButton) {
-        print("button \(sender.tag) pressed: \(sender)")
-        
         guard let tabView = sender.superview as? SpeedRoommatingTabView else {
             return
         }
-        
-        let buttonIndex = tabButtons.firstIndex(of: tabView)!
+        guard let buttonIndex = tabButtons.firstIndex(of: tabView) else {
+            return
+        }
         let viewToScrollTo = viewsToScrollTo[buttonIndex]
-
         scrollView.scrollRectToVisible(viewToScrollTo.frame, animated: true)
-        
         for index in 0..<tabButtons.count {
             tabButtons[index].isSelected = (index == buttonIndex)
         }
