@@ -56,8 +56,8 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytB-wK-v9g" customClass="TransluscentRoundedLabel" customModule="SpeedRoommating" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="16" width="56" height="28.5"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytB-wK-v9g" customClass="TransluscentRoundedLabel" customModule="SpeedRoommating" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="16" width="51.5" height="27.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="FREE"/>
