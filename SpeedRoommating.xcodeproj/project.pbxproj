@@ -44,7 +44,7 @@
 		609B96F9260774C800E96AFF /* ISpeedRoommatingEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609B96F8260774C800E96AFF /* ISpeedRoommatingEventProvider.swift */; };
 		60DE47B72607F63F00FC3E5B /* ISpeedRoommatingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DE47B62607F63F00FC3E5B /* ISpeedRoommatingEvent.swift */; };
 		60DE47BD2607FB8000FC3E5B /* SpeedRoommatingEventRepository in Frameworks */ = {isa = PBXBuildFile; productRef = 60DE47BC2607FB8000FC3E5B /* SpeedRoommatingEventRepository */; };
-		60DE47C02607FBBF00FC3E5B /* RoommatingEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DE47BF2607FBBF00FC3E5B /* RoommatingEventProvider.swift */; };
+		60DE47C02607FBBF00FC3E5B /* SpeedRoommatingEventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DE47BF2607FBBF00FC3E5B /* SpeedRoommatingEventProvider.swift */; };
 		60E0FC0D260695B60022F25C /* TransluscentRoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E0FC0C260695B60022F25C /* TransluscentRoundedLabel.swift */; };
 		60E0FC1026069D380022F25C /* EventListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E0FC0F26069D380022F25C /* EventListTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -109,7 +109,7 @@
 		609B96F8260774C800E96AFF /* ISpeedRoommatingEventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISpeedRoommatingEventProvider.swift; sourceTree = "<group>"; };
 		60DE47B62607F63F00FC3E5B /* ISpeedRoommatingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISpeedRoommatingEvent.swift; sourceTree = "<group>"; };
 		60DE47BA2607F75F00FC3E5B /* SpeedRoommatingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedRoommatingEvent.swift; sourceTree = "<group>"; };
-		60DE47BF2607FBBF00FC3E5B /* RoommatingEventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoommatingEventProvider.swift; sourceTree = "<group>"; };
+		60DE47BF2607FBBF00FC3E5B /* SpeedRoommatingEventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedRoommatingEventProvider.swift; sourceTree = "<group>"; };
 		60E0FC0C260695B60022F25C /* TransluscentRoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransluscentRoundedLabel.swift; sourceTree = "<group>"; };
 		60E0FC0F26069D380022F25C /* EventListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,43 +145,19 @@
 		60213F4A260A86260060091B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				60213F51260A96240060091B /* CdnUrlProvider */,
-				60213F5E260AA7C90060091B /* DataDecorators */,
-				60213F64260AB9770060091B /* EventTableDataSource */,
-				60587DEC2606706C00A41C2E /* ImageProvider */,
+				60213F53260A96580060091B /* Implementation */,
+				60213F52260A96500060091B /* Interface */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		60213F4D260A929E0060091B /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				60213F4B260A864D0060091B /* IViewableEvent.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
-		60213F4E260A92AA0060091B /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				60213F4F260A92C40060091B /* ViewableEvent.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		60213F51260A96240060091B /* CdnUrlProvider */ = {
-			isa = PBXGroup;
-			children = (
-				60213F52260A96500060091B /* Interface */,
-				60213F53260A96580060091B /* Implementation */,
-			);
-			path = CdnUrlProvider;
 			sourceTree = "<group>";
 		};
 		60213F52260A96500060091B /* Interface */ = {
 			isa = PBXGroup;
 			children = (
 				60213F54260A966F0060091B /* ICdnUrlProvider.swift */,
+				60213F69260ABDA70060091B /* IEventTableDataSource.swift */,
+				60587DF02606734400A41C2E /* IImageProvider.swift */,
+				60213F4B260A864D0060091B /* IViewableEvent.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -190,6 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				60213F57260A96E30060091B /* ImgxUrlProvider.swift */,
+				60213F4F260A92C40060091B /* ViewableEvent.swift */,
+				60587DED260670AF00A41C2E /* KingfisherImageProvider.swift */,
+				60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -213,15 +192,6 @@
 			path = ViewableEvent;
 			sourceTree = "<group>";
 		};
-		60213F5E260AA7C90060091B /* DataDecorators */ = {
-			isa = PBXGroup;
-			children = (
-				60213F4D260A929E0060091B /* Interface */,
-				60213F4E260A92AA0060091B /* Implementation */,
-			);
-			path = DataDecorators;
-			sourceTree = "<group>";
-		};
 		60213F61260AA8410060091B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,40 +199,6 @@
 				60213F72260D65B60060091B /* MockImageProviderTests.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		60213F64260AB9770060091B /* EventTableDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				60213F67260ABD8C0060091B /* Interface */,
-				60213F68260ABD930060091B /* Implementation */,
-			);
-			path = EventTableDataSource;
-			sourceTree = "<group>";
-		};
-		60213F67260ABD8C0060091B /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				60213F69260ABDA70060091B /* IEventTableDataSource.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
-		60213F68260ABD930060091B /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		60213F6B260AC28C0060091B /* SpeedRoommatingEvent */ = {
-			isa = PBXGroup;
-			children = (
-				60DE47B92607F75800FC3E5B /* Implementation */,
-				60DE47B82607F74B00FC3E5B /* Interface */,
-			);
-			path = SpeedRoommatingEvent;
 			sourceTree = "<group>";
 		};
 		60213F6C260AC3020060091B /* EventDataSource */ = {
@@ -353,37 +289,12 @@
 			path = SpeedRoommatingUITests;
 			sourceTree = "<group>";
 		};
-		60587DEC2606706C00A41C2E /* ImageProvider */ = {
-			isa = PBXGroup;
-			children = (
-				60587DEF2606733200A41C2E /* Interface */,
-				606BA85326068B7A0063250A /* Implementation */,
-			);
-			path = ImageProvider;
-			sourceTree = "<group>";
-		};
-		60587DEF2606733200A41C2E /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				60587DF02606734400A41C2E /* IImageProvider.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
 		60587DF226067ACE00A41C2E /* ImageProvider */ = {
 			isa = PBXGroup;
 			children = (
 				60587DF326067B0400A41C2E /* KingfisherImageProviderTests.swift */,
 			);
 			path = ImageProvider;
-			sourceTree = "<group>";
-		};
-		606BA85326068B7A0063250A /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				60587DED260670AF00A41C2E /* KingfisherImageProvider.swift */,
-			);
-			path = Implementation;
 			sourceTree = "<group>";
 		};
 		606BA85426068BC30063250A /* View */ = {
@@ -405,18 +316,10 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		609B96F72607749700E96AFF /* RoommatingEventProvider */ = {
-			isa = PBXGroup;
-			children = (
-				60DE47BE2607FBB000FC3E5B /* Implementation */,
-				60DE47B42607F59C00FC3E5B /* Interface */,
-			);
-			path = RoommatingEventProvider;
-			sourceTree = "<group>";
-		};
 		60DE47B42607F59C00FC3E5B /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				60DE47B62607F63F00FC3E5B /* ISpeedRoommatingEvent.swift */,
 				609B96F8260774C800E96AFF /* ISpeedRoommatingEventProvider.swift */,
 			);
 			path = Interface;
@@ -425,32 +328,17 @@
 		60DE47B52607F62A00FC3E5B /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				609B96F72607749700E96AFF /* RoommatingEventProvider */,
-				60213F6B260AC28C0060091B /* SpeedRoommatingEvent */,
+				60DE47B42607F59C00FC3E5B /* Interface */,
+				60DE47BE2607FBB000FC3E5B /* Implementation */,
 			);
 			path = DataModel;
-			sourceTree = "<group>";
-		};
-		60DE47B82607F74B00FC3E5B /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				60DE47B62607F63F00FC3E5B /* ISpeedRoommatingEvent.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
-		60DE47B92607F75800FC3E5B /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				60DE47BA2607F75F00FC3E5B /* SpeedRoommatingEvent.swift */,
-			);
-			path = Implementation;
 			sourceTree = "<group>";
 		};
 		60DE47BE2607FBB000FC3E5B /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				60DE47BF2607FBBF00FC3E5B /* RoommatingEventProvider.swift */,
+				60DE47BA2607F75F00FC3E5B /* SpeedRoommatingEvent.swift */,
+				60DE47BF2607FBBF00FC3E5B /* SpeedRoommatingEventProvider.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -608,7 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60213F7B260D861E0060091B /* IEventTableHeaderView.swift in Sources */,
-				60DE47C02607FBBF00FC3E5B /* RoommatingEventProvider.swift in Sources */,
+				60DE47C02607FBBF00FC3E5B /* SpeedRoommatingEventProvider.swift in Sources */,
 				60587DF12606734400A41C2E /* IImageProvider.swift in Sources */,
 				60E0FC0D260695B60022F25C /* TransluscentRoundedLabel.swift in Sources */,
 				60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */,
