@@ -14,6 +14,7 @@ protocol IEventTableViewDataSource : NSObject, UITableViewDataSource, UITableVie
     var imageProvider: IImageProvider { get set }
     var eventProvider: ISpeedRoommatingEventProvider { get set }
     var controlledTableView: UITableView! { get set }
+    var whichEventsToShow: EventsToShow { get set }
     
     func fetchEventsFromEventProvider(onComplete: @escaping (Error?) -> Void)
 }

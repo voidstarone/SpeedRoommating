@@ -23,6 +23,7 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
     private let eventRepo = SpeedRoommatingEventRepo.default
     
     public func preloadEventsOnOrAfter(date: Date, onComplete: @escaping (Error?) -> Void) {
+        
         eventRepo.listAllEventsOnOrAfter(date: date) {
             [weak self] result in
             switch(result) {
@@ -46,7 +47,38 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
                                                         venue: eventDto.venue,
                                                         startTime: eventDto.startTime,
                                                         endTime: eventDto.endTime)
-                
+                    return newEvent
+                }
+                onComplete(nil)
+            }
+        }
+    }
+    
+    public func preloadEventsBefore(date: Date, onComplete: @escaping (Error?) -> Void) {
+        
+        eventRepo.listAllEventsBefore(date: date) {
+            [weak self] result in
+            switch(result) {
+            case let .failure(error):
+                // This should be abstracted more. Accessing errors straight from the API adapter is gross
+                let repoError = error as! SpeedRoommatingEventSourceJsonApiAdapterError
+                switch repoError {
+                case .timeout:
+                    onComplete(RoommatingEventProviderError.network)
+                default:
+                    onComplete(RoommatingEventProviderError.unknown)
+                }
+                return
+            case let .success(events):
+                self?.eventCache = events.map {
+                    eventDto in
+                    // TODO: Abstract to factory
+                    let newEvent = SpeedRoommatingEvent(imageName: URL(string: eventDto.imageUrl)?.lastPathComponent ?? "",
+                                                        cost: eventDto.cost,
+                                                        location:eventDto.location,
+                                                        venue: eventDto.venue,
+                                                        startTime: eventDto.startTime,
+                                                        endTime: eventDto.endTime)
                     return newEvent
                 }
                 onComplete(nil)
@@ -68,6 +100,26 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
                     onComplete(.failure(RoommatingEventProviderError.dealloc))
                 }
                 let groupedEvents = self!.splitEventsIntoYearsAndMonths(events: self!.eventCache!)
+                onComplete(.success(groupedEvents))
+            }
+        }
+    }
+    
+    public func getEventsByYearAndMonth(beforeDate date: Date, onComplete: @escaping (Result<[Int : [Int : [ISpeedRoommatingEvent]]], Error>) -> Void) {
+        
+        // This should be some timeout logic, but we both know these events aren't changing while we're looking at this app
+        if cacheLastUpdatedAt == nil || self.eventCache == nil{
+            // TODO: WRITE THIS FUNCTION
+            preloadEventsBefore(date: date) {
+                [weak self] error in
+                if error != nil {
+                    onComplete(.failure(error!))
+                    return
+                }
+                if self == nil {
+                    onComplete(.failure(RoommatingEventProviderError.dealloc))
+                }
+                let groupedEvents = self!.splitEventsIntoYearsAndMonths(events: self!.eventCache!.reversed())
                 onComplete(.success(groupedEvents))
             }
         }

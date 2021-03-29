@@ -10,8 +10,19 @@ import Foundation
 import UIKit
 import Network
 
-public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
+enum EventsToShow {
+    case future
+    case past
+}
 
+
+enum EventTableViewDataSourceError : Error {
+    case invalidEventsToShow
+}
+
+public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
+    
+    var whichEventsToShow: EventsToShow = .future
     var imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
     var controlledTableView: UITableView! {
@@ -22,7 +33,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     var firstCell: IEventTableViewErrorCell?
     let monitor = NWPathMonitor()
     
-    private var eventSplitByMonth: [[IViewableEvent]]?
+    private var eventsSplitByMonth: [[IViewableEvent]]?
     private var sectionMonthNumbers: [Int]?
 
     override init() {
@@ -42,28 +53,46 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                     }
                 }
             }
-            self.eventProvider.getEventsByYearAndMonth(onOrAfterDate: Date()) {
-                result in
-                var maybeError: Error? = nil
-                switch(result) {
-                case let .success(groupedEvents):
-                    if !self.setGroupEvents(groupedEvents: groupedEvents) {
-                        DispatchQueue.main.async {
-                            self.firstCell = self.createEmptyListCell()
-                            self.controlledTableView.reloadData()
-                        }
-                    }
-                    break
-                case let .failure(error):
-                    self.handleFetchError(error)
-                    maybeError = error
+            var returnResult: Error? = nil
+            if self.whichEventsToShow == .future {
+                self.eventProvider.getEventsByYearAndMonth(onOrAfterDate: Date()) {
+                    result in
+                    returnResult = self.handleEventProviderResult(result)
                 }
-                onComplete(maybeError)
+            } else if self.whichEventsToShow == .past {
+                self.eventProvider.getEventsByYearAndMonth(beforeDate: Date()) {
+                    result in
+                    print(result)
+                    returnResult = self.handleEventProviderResult(result)
+                }
             }
-            DispatchQueue.main.async {
-                self.controlledTableView.reloadData()
-            }
+            onComplete(returnResult)
         }
+    }
+    
+    private func handleEventProviderResult(_ result: Result<[Int : [Int : [ISpeedRoommatingEvent]]], Error>) -> Error? {
+        var maybeError: Error? = nil
+        switch(result) {
+        case let .success(groupedEvents):
+            self.setGroupEvents(groupedEvents: groupedEvents) {
+                isEmptyList in
+                if isEmptyList {
+                    DispatchQueue.main.async {
+                        self.firstCell = self.createEmptyListCell()
+                        self.controlledTableView.reloadData()
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.controlledTableView.reloadData()
+                }
+            }
+            break
+        case let .failure(error):
+            self.handleFetchError(error)
+            maybeError = error
+        }
+        return maybeError
     }
     
     private func handleFetchError(_ error: Error) {
@@ -89,23 +118,26 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
          }
     }
 
-    private func setGroupEvents(groupedEvents: [Int : [Int : [ISpeedRoommatingEvent]]]) -> Bool {
-        self.eventSplitByMonth = []
+    private func setGroupEvents(groupedEvents: [Int : [Int : [ISpeedRoommatingEvent]]], onComplete: (Bool) -> Void) {
+        self.eventsSplitByMonth = []
         self.sectionMonthNumbers = []
-        let sortedYears = Array(groupedEvents.keys).sorted(by: <)
+        let comparator: (Int, Int) -> Bool
+        if whichEventsToShow == .future {
+            comparator = {$0 <= $1}
+        } else {
+            comparator = {$0 > $1}
+        }
+        let sortedYears = Array(groupedEvents.keys).sorted(by: comparator)
         for yearNumber in sortedYears {
             let year = groupedEvents[yearNumber]!
-            let sortedMonths = groupedEvents[yearNumber]!.keys.sorted(by: <)
+            let sortedMonths = groupedEvents[yearNumber]!.keys.sorted(by: comparator)
             self.sectionMonthNumbers!.append(contentsOf: sortedMonths)
             for monthNumber in sortedMonths {
                 let month = year[monthNumber]!
-                self.eventSplitByMonth?.append(month.map { ViewableEvent(event: $0) })
+                self.eventsSplitByMonth?.append(month.map { ViewableEvent(event: $0) })
             }
         }
-        DispatchQueue.main.async {
-            self.controlledTableView.reloadData()
-        }
-        return self.eventSplitByMonth?.count != 0
+        onComplete(self.eventsSplitByMonth?.count == 0)
     }
     
     private func createEmptyListCell() -> IEventTableViewErrorCell {
@@ -139,12 +171,12 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     }
 
     public func numberOfSections(in tableView: UITableView) -> Int {
-        let allMonthsCount = self.eventSplitByMonth?.count
+        let allMonthsCount = self.eventsSplitByMonth?.count
         return allMonthsCount ?? 1
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let thisSectionsEventsCount = self.eventSplitByMonth?[section].count
+        let thisSectionsEventsCount = self.eventsSplitByMonth?[section].count
         return thisSectionsEventsCount ?? 10
     }
     
@@ -199,7 +231,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             }
         }
         
-        guard let eventForCell = eventSplitByMonth?[indexPath.section][indexPath.row] as? ViewableEvent else {
+        guard let eventForCell = eventsSplitByMonth?[indexPath.section][indexPath.row] as? ViewableEvent else {
             // placeholder
             return UITableViewCell()
         }
@@ -218,7 +250,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if eventSplitByMonth == nil || eventSplitByMonth?.count == 0 {
+        if eventsSplitByMonth == nil || eventsSplitByMonth?.count == 0 {
             return 0
         }
         return 40

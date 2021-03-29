@@ -34,9 +34,6 @@
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhp-PO-ucJ" userLabel="Archived">
                                                 <rect key="frame" x="414" y="0.0" width="414" height="768"/>
-                                                <connections>
-                                                    <segue destination="Dz4-kP-vlF" kind="embed" id="1Ra-Oy-7er"/>
-                                                </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ro-TD-ULw" userLabel="Options">
                                                 <rect key="frame" x="828" y="0.0" width="414" height="768"/>
@@ -167,7 +164,10 @@
                         <viewLayoutGuide key="safeArea" id="3vm-m3-w7g"/>
                     </view>
                     <connections>
+                        <outlet property="archivedEventListView" destination="Mhp-PO-ucJ" id="AGC-PP-Lq7"/>
+                        <outlet property="optionsView" destination="1ro-TD-ULw" id="PcK-mk-mfH"/>
                         <outlet property="pagingScrollView" destination="Ehy-1C-4vy" id="7XH-Yr-o9b"/>
+                        <outlet property="upcomingEventListView" destination="kZE-0L-3YC" id="4C3-Hh-ZCS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0P-q7-GSL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -177,7 +177,7 @@
         <!--Event List Table View Controller-->
         <scene sceneID="NDM-Ca-0vO">
             <objects>
-                <tableViewController id="o81-vQ-BCf" customClass="EventListTableViewController" customModule="SpeedRoommating" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EventListTableViewController" id="o81-vQ-BCf" customClass="EventListTableViewController" customModule="SpeedRoommating" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="210" estimatedRowHeight="210" sectionHeaderHeight="40" estimatedSectionHeaderHeight="40" sectionFooterHeight="28" id="s8C-Gy-PWK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,38 +205,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Hn-xt-bKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-154" y="-840"/>
-        </scene>
-        <!--Event List Table View Controller-->
-        <scene sceneID="mMv-LJ-OsH">
-            <objects>
-                <tableViewController id="Dz4-kP-vlF" customClass="EventListTableViewController" customModule="SpeedRoommating" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="210" estimatedRowHeight="210" sectionHeaderHeight="40" estimatedSectionHeaderHeight="40" sectionFooterHeight="28" id="8T4-6e-uFA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <sections>
-                            <tableViewSection id="axG-Ms-R6U">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="210" id="awg-mW-kI4">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="210"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="awg-mW-kI4" id="0kv-eK-F6k">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="210"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="Dz4-kP-vlF" id="Mia-1H-F6q"/>
-                            <outlet property="delegate" destination="Dz4-kP-vlF" id="MGM-UT-Imb"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PZV-Rj-D8b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="493" y="-840"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ekm-d3-WU0">
