@@ -260,8 +260,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             return UIView()
         }
         let monthName = DateFormatter().monthSymbols?[monthNumber - 1]
-        headerView.headerLabel.text = monthName
-        
+        headerView.headerLabel.text = monthName?.uppercased()
         return headerView
     }
 }

@@ -19,7 +19,7 @@ class EventListsViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    @IBOutlet weak var pagingScrollView: UIScrollView!
+    @IBOutlet weak var pagingScrollView: TabbableScrollView!
     
     @IBOutlet weak var upcomingEventListView: UIView!
     @IBOutlet weak var archivedEventListView: UIView!
