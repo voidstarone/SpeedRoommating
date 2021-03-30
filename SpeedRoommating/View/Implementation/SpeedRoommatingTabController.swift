@@ -44,7 +44,7 @@ class TabController : NSObject, TabbableScrollViewDelegate {
     func didNotifyOfScroll(contentOffset: CGPoint) {
         // I would favour doing this so that the screen that was _most_ in view got chosen
         // however, this is much faster, and will do for this technical test. There is code
-        // that solves this problem on my GitHub already.
+        // that solves this problem (in JS) on my GitHub already.
         let viewsInFrame  = viewsToScrollTo.filter {
             $0.frame.origin.x == contentOffset.x
         }
@@ -58,7 +58,6 @@ class TabController : NSObject, TabbableScrollViewDelegate {
         setSelectedButton(index: viewIndex)
         
     }
-    
     
     func setup() {
         if tabButtons.count != viewsToScrollTo.count {

@@ -58,6 +58,15 @@ struct ViewableEvent : IViewableEvent {
         }
     }
     
+    var accessibilityDescription: String {
+        get {
+            let startTimeComponents = calendar.dateComponents([.hour, .minute], from: startTime)
+            let hours = startTimeComponents.hour!
+            let minutes = startTimeComponents.minute!
+            return "\(cost) event at \(venue) in \(location) on \(dateAsShortReadable), \(String(format: "%02d", hours)):\(String(format: "%02d", minutes))"
+        }
+    }
+    
     init(event: ISpeedRoommatingEvent){
         cost = event.cost
         location = event.location

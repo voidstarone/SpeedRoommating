@@ -53,7 +53,7 @@ import UIKit
     
     private func setup() {
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name:"SFCompactDisplay-Medium", size: 13)
+        label.font = UIFont(name:"SFCompactDisplay-Medium", size: 6.5)
         
         addSubview(label)
         

@@ -14,7 +14,7 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
     var errorImageView: UIImageView = UIImageView()
     var errorTitleLabel: UILabel = UILabel()
     var errorDescriptionLabel: UILabel  = UILabel()
-    var retryButton: UIButton = UIButton()
+    var retryButton: FilledButton = FilledButton()
     var buttonCallback: (() -> Void)?
     
     private var shouldShowButton = false
@@ -42,25 +42,30 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
         retryButton.translatesAutoresizingMaskIntoConstraints = false
         retryButton.setTitle(text, for: .normal)
         retryButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        retryButton.backgroundColor = UIColor(named: "Active")
         addSubview(retryButton)
         
         let buttonTopConstraint = NSLayoutConstraint(item: retryButton, attribute: .top, relatedBy: .equal, toItem: errorDescriptionLabel, attribute: .bottom, multiplier: 1, constant: 12)
         let buttonCenterXConstraint = NSLayoutConstraint(item: retryButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
-        let buttonHeightConstraint = NSLayoutConstraint(item: retryButton, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
         
         NSLayoutConstraint.activate([buttonTopConstraint,
-                                     buttonCenterXConstraint,
-                                     buttonHeightConstraint])
+                                     buttonCenterXConstraint])
     }
     
     func setupWithoutButton() {
         errorImageView.translatesAutoresizingMaskIntoConstraints = false
         errorTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         errorDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        errorTitleLabel.font = UIFont(name:"SFCompactDisplay-Medium", size: 8.5)
+        errorTitleLabel.textColor = UIColor(named: "DustyGrey")
+        errorDescriptionLabel.font = UIFont(name:"SFCompactDisplay-Regular", size: 8)
+        errorDescriptionLabel.textColor = UIColor(named: "DustyGrey")
         errorDescriptionLabel.lineBreakMode = .byWordWrapping
         errorDescriptionLabel.numberOfLines = 0
         errorDescriptionLabel.textAlignment = .center
+        
+        
+        
         addSubview(errorImageView)
         addSubview(errorTitleLabel)
         addSubview(errorDescriptionLabel)
@@ -80,7 +85,7 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
         let errorTitleViewCenterXConstraint = NSLayoutConstraint(item: errorTitleLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
         NSLayoutConstraint.activate([errorTitleViewTopConstraint, errorTitleViewCenterXConstraint])
         
-        let errorDescriptionViewTopConstraint = NSLayoutConstraint(item: errorDescriptionLabel, attribute: .top, relatedBy: .equal, toItem: errorTitleLabel, attribute: .bottom, multiplier: 1, constant: 2)
+        let errorDescriptionViewTopConstraint = NSLayoutConstraint(item: errorDescriptionLabel, attribute: .top, relatedBy: .equal, toItem: errorTitleLabel, attribute: .bottom, multiplier: 1, constant: 12)
         let errorDescriptionViewLeadingConstraint = NSLayoutConstraint(item: errorDescriptionLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 24)
         let errorDescriptionViewTrailingConstraint = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: errorDescriptionLabel, attribute: .trailing, multiplier: 1, constant: 24)
         let errorDescriptionViewBottomConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: errorDescriptionLabel, attribute: .bottom, multiplier: 1, constant: 24)

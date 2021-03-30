@@ -31,7 +31,6 @@ class TabbableScrollView : UIScrollView, UIScrollViewDelegate {
         tabbableDelegate?.didNotifyOfScroll(contentOffset: scrollView.contentOffset)
     }
     
-    
     func setup() {
         delegate = self
         isPagingEnabled = true

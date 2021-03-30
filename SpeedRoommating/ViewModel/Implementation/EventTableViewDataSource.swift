@@ -186,10 +186,9 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
         
         let heightConstraint = NSLayoutConstraint(item: cell, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 210)
         heightConstraint.isActive = true
-
-        let imageTargetSize = cell.frame.size
-
+        
         DispatchQueue.main.async {
+            cell.accessibilityLabel = eventForCell.accessibilityDescription
             cell.locationLabel.text = eventForCell.location
             cell.venueLabel.text = eventForCell.venue
             cell.costLabel.labelText = eventForCell.cost
@@ -197,6 +196,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             cell.timeLabel.text = durationText
         }
         
+        let imageTargetSize = cell.frame.size
         let fetchImageThread = DispatchQueue(label: "fetchImages", qos: .background)
         fetchImageThread.async {
             [weak self] in
@@ -260,6 +260,8 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             return UIView()
         }
         let monthName = DateFormatter().monthSymbols?[monthNumber - 1]
+        headerView.headerLabel.accessibilityLabel = monthName
+        headerView.headerLabel.accessibilityIdentifier = "table_header_\(monthName?.lowercased() ?? "empty")"
         headerView.headerLabel.text = monthName?.uppercased()
         return headerView
     }
