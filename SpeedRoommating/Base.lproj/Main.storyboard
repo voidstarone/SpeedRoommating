@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehy-1C-4vy">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehy-1C-4vy" customClass="TabbableScrollView" customModule="SpeedRoommating" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="128" width="414" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d97-bJ-bbw" userLabel="Scroll Content">
@@ -105,6 +105,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOE-fb-sNA" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <accessibility key="accessibilityConfiguration" hint="View future events" identifier="main_tab_upcoming" label="Upcoming">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Upcoming"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSelected" value="YES"/>
@@ -113,6 +116,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXL-rT-uUv" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
                                                 <rect key="frame" x="138" y="0.0" width="138" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <accessibility key="accessibilityConfiguration" hint="View previous events" identifier="main_tab_archived" label="Archived">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="ARCHIVED"/>
                                                 </userDefinedRuntimeAttributes>
@@ -120,6 +126,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZd-fO-zJn" customClass="SpeedRoommatingTabView" customModule="SpeedRoommating" customModuleProvider="target">
                                                 <rect key="frame" x="276" y="0.0" width="138" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Adjust app settings" identifier="main_tab_options" label="Options">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="OPTIONS"/>
                                                 </userDefinedRuntimeAttributes>

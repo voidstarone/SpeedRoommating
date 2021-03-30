@@ -16,6 +16,7 @@ protocol IViewableEvent {
     var venue: String  { get }
     var durationText: String { get }
     var dateAsShortReadable: String { get }
+    var accessibilityDescription: String { get }
     
     func imageUrlAt(size: CGSize) -> URL
 }

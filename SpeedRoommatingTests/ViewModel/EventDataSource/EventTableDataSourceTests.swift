@@ -79,7 +79,7 @@ class EventTableDataSourceTests: XCTestCase {
             DispatchQueue.main.async {
                 let firstHeader = self.eventTableDataSource.tableView?(self.tableView, viewForHeaderInSection: 0) as! EventTableHeaderView
                         
-                XCTAssertEqual(firstHeader.headerLabel.text, "November")
+                XCTAssertEqual(firstHeader.headerLabel.text, "NOVEMBER")
                 promiseToFetchEvents.fulfill()
             }
         }

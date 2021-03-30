@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-class TabController  {
+class TabController : NSObject, TabbableScrollViewDelegate {
     
     var tabButtons: [SpeedRoommatingTabView] = []
-    var scrollView: UIScrollView!
+    var scrollView: TabbableScrollView!
     var viewsToScrollTo: [UIView] = []
     
-    init(tabButtons: [SpeedRoommatingTabView], scrollView: UIScrollView, viewsToScrollTo: [UIView]) {
+    init(tabButtons: [SpeedRoommatingTabView], scrollView: TabbableScrollView, viewsToScrollTo: [UIView]) {
+        super.init()
         self.tabButtons = tabButtons
         self.scrollView = scrollView
         self.viewsToScrollTo = viewsToScrollTo
@@ -31,9 +32,31 @@ class TabController  {
         }
         let viewToScrollTo = viewsToScrollTo[buttonIndex]
         scrollView.scrollRectToVisible(viewToScrollTo.frame, animated: true)
+        setSelectedButton(index: buttonIndex)
+    }
+    
+    private func setSelectedButton(index selectedIndex: Int) {
         for index in 0..<tabButtons.count {
-            tabButtons[index].isSelected = (index == buttonIndex)
+            tabButtons[index].isSelected = (index == selectedIndex)
         }
+    }
+    
+    func didNotifyOfScroll(contentOffset: CGPoint) {
+        // I would favour doing this so that the screen that was _most_ in view got chosen
+        // however, this is much faster, and will do for this technical test. There is code
+        // that solves this problem (in JS) on my GitHub already.
+        let viewsInFrame  = viewsToScrollTo.filter {
+            $0.frame.origin.x == contentOffset.x
+        }
+        if viewsInFrame.count != 1 {
+            return
+        }
+        let currentlyDisplayedView = viewsInFrame.first!
+        guard let viewIndex = viewsToScrollTo.firstIndex(of: currentlyDisplayedView) else {
+            return
+        }
+        setSelectedButton(index: viewIndex)
+        
     }
     
     func setup() {
@@ -46,5 +69,6 @@ class TabController  {
                                                action: #selector(buttonPress),
                                                for: .touchUpInside)
         }
+        scrollView.tabbableDelegate = self
     }
 }
