@@ -12,7 +12,7 @@ Eventually the app will look like this: https://app.zeplin.io/project/602ce06011
 2. Start with a janky vertical slice and build out.  
 	I chose to do this firstly to demonstrate that I could refactor my way out of something pretty bad and add testing to that. It was also a quick way of getting a vertical slice so I could evisage the rest of the app more easily and build around it.
 3. Not worry too much about font styles and sizes.
-	Initially I was copying all the font sizes and styles directly from Zeplin, but all the measurements are just _off_ in a real app. They don't look right. So what I have right now is a mix of measurements taken directly from that and what I think looks better. I was going through matching them perfectly to what was in Zeplin to demonstrate attention to detail, but it would've looked terrible.
+	Initially I was copying all the font sizes and styles directly from Zeplin, but all the measurements are just _off_ in a real app. They don't look right. So what I have right now is a mix of measurements taken directly from that and what I think looks better. I was going through matching them perfectly to what was in Zeplin to demonstrate attention to detail, but it would've looked terrible. I have also ignored a line above the table header section titles because it didn't seem worth going back to do, but I have noticed it.
 4. As of the time that I am writing this I have left in some bad abstractions. 
 	It is my intent to refactor most of these out before submission, but my focus was on getting something with a fairly complete feature set and _good enough_ abstraction. I have mostly left notes where this badness occurs.
 5. Test the complicated stuff. 
@@ -40,5 +40,6 @@ Well, apart from fixing all the stuff listed above, particularly the abstraction
 	Adjustable font sizes would be a really good feature for those with visual impairment (like my mum) who does use SpareRoom. I'm not _massively_ confident on how to do this, particularly while maintaining the look that you were going for with this one, but it's definitely a feature that benefits people.
 4. Add a detail view.
 	Obviously seeing more event details would be a pretty crucial feature for any continuation of this. Seeing who was going, being able to add a calendar event, maybe some push notifications - all that kind of stuff would make it a real finished product.
-
+5. Add localisation.
+	Just a good thing to have all round. Better to have it in place and not need it than have to spend a week or two implementing it throughout the app.
 

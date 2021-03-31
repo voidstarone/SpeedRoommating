@@ -9,13 +9,18 @@
 import Foundation
 import UIKit
 
-class TabController : NSObject, TabbableScrollViewDelegate {
+protocol TabControllerDelegate {
+    func didChangeTab(index: Int)
+}
+
+class TabController : NSObject, NotifyingScrollViewDelegate {
     
     var tabButtons: [SpeedRoommatingTabView] = []
-    var scrollView: TabbableScrollView!
+    var scrollView: NotifyingScrollView!
     var viewsToScrollTo: [UIView] = []
+    var delegate: TabControllerDelegate?
     
-    init(tabButtons: [SpeedRoommatingTabView], scrollView: TabbableScrollView, viewsToScrollTo: [UIView]) {
+    init(tabButtons: [SpeedRoommatingTabView], scrollView: NotifyingScrollView, viewsToScrollTo: [UIView]) {
         super.init()
         self.tabButtons = tabButtons
         self.scrollView = scrollView
@@ -33,6 +38,7 @@ class TabController : NSObject, TabbableScrollViewDelegate {
         let viewToScrollTo = viewsToScrollTo[buttonIndex]
         scrollView.scrollRectToVisible(viewToScrollTo.frame, animated: true)
         setSelectedButton(index: buttonIndex)
+        delegate?.didChangeTab(index: buttonIndex)
     }
     
     private func setSelectedButton(index selectedIndex: Int) {
@@ -56,7 +62,7 @@ class TabController : NSObject, TabbableScrollViewDelegate {
             return
         }
         setSelectedButton(index: viewIndex)
-        
+        delegate?.didChangeTab(index: viewIndex)
     }
     
     func setup() {
@@ -69,6 +75,7 @@ class TabController : NSObject, TabbableScrollViewDelegate {
                                                action: #selector(buttonPress),
                                                for: .touchUpInside)
         }
+        scrollView.isPagingEnabled = true
         scrollView.tabbableDelegate = self
     }
 }

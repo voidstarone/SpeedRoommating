@@ -11,7 +11,11 @@ import UIKit
 
 class EventTableViewCell : UITableViewCell, IEventTableViewCell {
     
-    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView! {
+        didSet {
+            backgroundImageView.layer.cornerRadius = 3
+        }
+    }
     @IBOutlet weak var costLabel: TransluscentRoundedLabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -24,11 +28,5 @@ class EventTableViewCell : UITableViewCell, IEventTableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    override func layerWillDraw(_ layer: CALayer) {
-// TODO: Investigate why this doesn't work
-        layer.cornerRadius = 3
-        layer.masksToBounds = true
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import SpeedRoommatingEventRepository
 
 class EventListsViewController: UIViewController {
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -19,7 +19,8 @@ class EventListsViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    @IBOutlet weak var pagingScrollView: TabbableScrollView!
+    @IBOutlet weak var titleBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pagingScrollView: NotifyingScrollView!
     
     @IBOutlet weak var upcomingEventListView: UIView!
     @IBOutlet weak var archivedEventListView: UIView!
@@ -34,7 +35,8 @@ class EventListsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let archivedEventsController = storyboard!.instantiateViewController(withIdentifier: "EventListTableViewController") as? EventListTableViewController else {
+        guard let archivedEventsController = storyboard!.instantiateViewController(
+            withIdentifier: "EventListTableViewController") as? EventListTableViewController else {
             return
         }
         archivedEventsController.eventsDataSource.whichEventsToShow = EventsToShow.past
@@ -54,7 +56,6 @@ class EventListsViewController: UIViewController {
         tabController = TabController(tabButtons: buttons as! [SpeedRoommatingTabView],
                                       scrollView: pagingScrollView,
                                       viewsToScrollTo: views as! [UIView])
-        
     }
 }
 

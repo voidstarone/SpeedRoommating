@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-protocol TabbableScrollViewDelegate {
+protocol NotifyingScrollViewDelegate {
     func didNotifyOfScroll(contentOffset: CGPoint)
 }
 
 class NotifyingScrollView : UIScrollView, UIScrollViewDelegate {
     
-    var tabbableDelegate: TabbableScrollViewDelegate?
+    var tabbableDelegate: NotifyingScrollViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
