@@ -29,9 +29,9 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
             switch(result) {
             case let .failure(error):
                 // This should be abstracted more. Accessing errors straight from the API adapter is gross
-                let repoError = error as! SpeedRoommatingEventSourceJsonApiAdapterError
+                let repoError = error as! SpeedRoommatingEventRepoError
                 switch repoError {
-                case .timeout:
+                case .network:
                     onComplete(RoommatingEventProviderError.network)
                 default:
                     onComplete(RoommatingEventProviderError.unknown)
@@ -61,9 +61,9 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
             switch(result) {
             case let .failure(error):
                 // This should be abstracted more. Accessing errors straight from the API adapter is gross
-                let repoError = error as! SpeedRoommatingEventSourceJsonApiAdapterError
+                let repoError = error as! SpeedRoommatingEventRepoError
                 switch repoError {
-                case .timeout:
+                case .network:
                     onComplete(RoommatingEventProviderError.network)
                 default:
                     onComplete(RoommatingEventProviderError.unknown)
