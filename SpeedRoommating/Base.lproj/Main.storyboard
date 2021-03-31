@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehy-1C-4vy" customClass="TabbableScrollView" customModule="SpeedRoommating" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehy-1C-4vy" customClass="NotifyingScrollView" customModule="SpeedRoommating" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="128" width="414" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d97-bJ-bbw" userLabel="Scroll Content">
@@ -73,7 +73,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jn-qQ-BqM" userLabel="Top Bar">
                                 <rect key="frame" x="0.0" y="44" width="414" height="84"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-ee-bAg" userLabel="Title Bar">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-ee-bAg" userLabel="Title Bar">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconClose" translatesAutoresizingMaskIntoConstraints="NO" id="ugY-ef-s3Y">
@@ -148,8 +148,8 @@
                                     <constraint firstAttribute="trailing" secondItem="1UU-ee-bAg" secondAttribute="trailing" id="8Ik-Fi-xM0"/>
                                     <constraint firstItem="1UU-ee-bAg" firstAttribute="top" secondItem="3jn-qQ-BqM" secondAttribute="top" id="99k-wG-2r9"/>
                                     <constraint firstItem="j61-1b-xa9" firstAttribute="leading" secondItem="3jn-qQ-BqM" secondAttribute="leading" id="A3r-7z-3ci"/>
-                                    <constraint firstAttribute="height" constant="84" id="b0H-AO-4gf"/>
-                                    <constraint firstAttribute="bottom" secondItem="j61-1b-xa9" secondAttribute="bottom" id="cCK-pX-s8W"/>
+                                    <constraint firstItem="j61-1b-xa9" firstAttribute="top" secondItem="1UU-ee-bAg" secondAttribute="bottom" id="C2D-5l-C38"/>
+                                    <constraint firstItem="j61-1b-xa9" firstAttribute="bottom" secondItem="3jn-qQ-BqM" secondAttribute="bottom" id="H5p-SY-9Yx"/>
                                     <constraint firstItem="1UU-ee-bAg" firstAttribute="leading" secondItem="3jn-qQ-BqM" secondAttribute="leading" id="g9P-4L-im6"/>
                                 </constraints>
                             </view>
@@ -172,6 +172,7 @@
                         <outlet property="optionsTab" destination="vZd-fO-zJn" id="Bvc-1p-MeE"/>
                         <outlet property="optionsView" destination="1ro-TD-ULw" id="PcK-mk-mfH"/>
                         <outlet property="pagingScrollView" destination="Ehy-1C-4vy" id="2cE-LA-BQb"/>
+                        <outlet property="titleBarHeightConstraint" destination="nHq-zi-Ob0" id="lOj-QO-6xU"/>
                         <outlet property="upcomingEventListView" destination="kZE-0L-3YC" id="4C3-Hh-ZCS"/>
                         <outlet property="upcomingTab" destination="QOE-fb-sNA" id="Y67-2n-nUV"/>
                     </connections>

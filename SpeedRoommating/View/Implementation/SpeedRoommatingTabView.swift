@@ -31,6 +31,42 @@ import UIKit
         }
     }
     
+    override var accessibilityLabel: String? {
+        set(value) {
+            button.accessibilityLabel = value
+        }
+        get {
+            return button.accessibilityLabel
+        }
+    }
+    
+    override var isAccessibilityElement: Bool {
+        set(value) {
+            button.isAccessibilityElement = value
+        }
+        get {
+            return button.isAccessibilityElement
+        }
+    }
+    
+    override var accessibilityIdentifier: String? {
+        set(value) {
+            button.accessibilityIdentifier = value
+        }
+        get {
+            return button.accessibilityIdentifier
+        }
+    }
+    
+    override var accessibilityHint: String? {
+           set(value) {
+               button.accessibilityHint = value
+           }
+           get {
+               return button.accessibilityHint
+           }
+       }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()

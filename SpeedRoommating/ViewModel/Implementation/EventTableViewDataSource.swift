@@ -20,6 +20,10 @@ enum EventTableViewDataSourceError : Error {
     case invalidEventsToShow
 }
 
+// TODO: Break this class up. It's doing too much. I'm not yet sure where to put it,
+//       but the call to fetch events from eventProvider is just _wrong_ here.
+//       As is the sorting.
+
 public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     
     var whichEventsToShow: EventsToShow = .future
@@ -27,7 +31,8 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
     var controlledTableView: UITableView! {
         didSet {
-            controlledTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
+            controlledTableView.register(UINib(nibName: "EventTableViewCell", bundle: nil),
+                                         forCellReuseIdentifier: "EventTableViewCell")
         }
     }
     var firstCell: IEventTableViewErrorCell?
@@ -69,7 +74,9 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
         }
     }
     
-    private func handleEventProviderResult(_ result: Result<[Int : [Int : [ISpeedRoommatingEvent]]], Error>) -> Error? {
+    private func handleEventProviderResult(_ result:
+        Result<[Int : [Int : [ISpeedRoommatingEvent]]], Error>
+    ) -> Error? {
         var maybeError: Error? = nil
         switch(result) {
         case let .success(groupedEvents):
@@ -117,7 +124,8 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
          }
     }
 
-    private func setGroupEvents(groupedEvents: [Int : [Int : [ISpeedRoommatingEvent]]], onComplete: (Bool) -> Void) {
+    private func setGroupEvents(groupedEvents: [Int : [Int : [ISpeedRoommatingEvent]]],
+                                onComplete: (Bool) -> Void) {
         self.eventsSplitByMonth = []
         self.sectionMonthNumbers = []
         let comparator: (Int, Int) -> Bool
@@ -179,12 +187,21 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
         return thisSectionsEventsCount ?? 10
     }
     
-    private func createFilledCell(for tableView: UITableView, eventForCell: ViewableEvent, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell", for: indexPath) as! EventTableViewCell
+    private func createFilledCell(for tableView: UITableView,
+                                  eventForCell: ViewableEvent,
+                                  at indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell",
+                                                 for: indexPath) as! EventTableViewCell
         let durationText = eventForCell.durationText
         let shortReadableDate = eventForCell.dateAsShortReadable
         
-        let heightConstraint = NSLayoutConstraint(item: cell, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 210)
+        let heightConstraint = NSLayoutConstraint(item: cell,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: nil,
+                                                  attribute: .notAnAttribute,
+                                                  multiplier: 1,
+                                                  constant: 210)
         heightConstraint.isActive = true
         
         DispatchQueue.main.async {
@@ -221,7 +238,9 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     }
 
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView,
+                          cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
         
         if indexPath.section == 0 && indexPath.row == 0 {
             if let returnCell = firstCell {
