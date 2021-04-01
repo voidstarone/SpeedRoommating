@@ -58,14 +58,14 @@ public struct KingfisherImageProvider : IImageProvider {
     }
     
     private func downloadImage(url imageUrl: URL , onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
-        downloader.downloadImage(with: imageUrl) { result in
-            switch result {
-            case .success(let value):
-                onComplete(.success(value.image))
-            case .failure(let error):
-                onComplete(.failure(error))
-            }
-        }
+//        downloader.downloadImage(with: imageUrl) { result in
+//            switch result {
+//            case .success(let value):
+//                onComplete(.success(value.image))
+//            case .failure(let error):
+//                onComplete(.failure(error))
+//            }
+//        }
     }
     
     private func saveToCache(url: URL, image: UIImage) {
