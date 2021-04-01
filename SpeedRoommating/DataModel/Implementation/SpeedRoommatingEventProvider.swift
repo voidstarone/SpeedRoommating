@@ -28,7 +28,6 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
             [weak self] result in
             switch(result) {
             case let .failure(error):
-                // This should be abstracted more. Accessing errors straight from the API adapter is gross
                 let repoError = error as! SpeedRoommatingEventRepoError
                 switch repoError {
                 case .network:
@@ -60,8 +59,7 @@ class SpeedRoommatingEventProvider : ISpeedRoommatingEventProvider {
             [weak self] result in
             switch(result) {
             case let .failure(error):
-                // This should be abstracted more. Accessing errors straight from the API adapter is gross
-                let repoError = error as! SpeedRoommatingEventRepoError
+                let repoError = error as! RoommatingEventProviderError
                 switch repoError {
                 case .network:
                     onComplete(RoommatingEventProviderError.network)
