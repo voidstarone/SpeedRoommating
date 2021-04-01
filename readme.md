@@ -16,7 +16,7 @@ Eventually the app will look like this: https://app.zeplin.io/project/602ce06011
 4. As of the time that I am writing this I have left in some bad abstractions. 
 	It is my intent to refactor most of these out before submission, but my focus was on getting something with a fairly complete feature set and _good enough_ abstraction. I have mostly left notes where this badness occurs.
 5. Test the complicated stuff. 
-	The coverage in this repository is not as good as I would like or I was aiming for initially. Ultimately, I have opted for a more complete product over super-rigerous testing, but I have tested the bits that, for me, it made sense to test. A more complete approach to testing is demonstrated in the Repo project, but more unit and UI testing is very desirable.
+	The coverage in this repository is not as good as I would like or I was aiming for initially. Ultimately, I have opted for a more complete product over super-rigorous testing, but I have tested the bits that, for me, it made sense to test. A more complete approach to testing is demonstrated in the Repo project, but more unit and UI testing is very desirable.
 6. Neglect a race condition in Kingfisher.
 	I have chosen to use Kingfisher to cache images, particularly as there's a lot of duplication. The only issue is that I'm seeing a race condition internally within Kingfisher and sometimes images aren't being put on the screen the first time. This is one of my higher priorities to look into, but as there's every chance it's an issue within the library, I have decided to focus on stuff entirely within my control for now as I feel this is a better chance to show my work.
 7. Add a bit of accessibility.
