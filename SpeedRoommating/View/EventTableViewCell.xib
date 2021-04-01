@@ -32,8 +32,44 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1eR-Ok-AtH">
                                         <rect key="frame" x="0.0" y="0.0" width="510" height="312"/>
-                                        <color key="backgroundColor" name="PanelBackground"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDg-qh-qyQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="510" height="312"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconCamera" translatesAutoresizingMaskIntoConstraints="NO" id="WU5-MN-FB0">
+                                                <rect key="frame" x="16" y="16" width="48" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="VUD-3D-hNF"/>
+                                                    <constraint firstAttribute="height" constant="48" id="tmk-yW-Xy4"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hp1-4L-R4n">
+                                                <rect key="frame" x="16" y="280" width="160" height="16"/>
+                                                <color key="backgroundColor" name="Detail"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="160" id="bAH-Zn-pep"/>
+                                                    <constraint firstAttribute="height" constant="16" id="s2d-27-k4N"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ze-EW-oIP">
+                                                <rect key="frame" x="16" y="256" width="240" height="16"/>
+                                                <color key="backgroundColor" name="Detail"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="Gru-4x-lDK"/>
+                                                    <constraint firstAttribute="width" constant="240" id="z7N-x8-sYO"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" name="PanelBackground"/>
+                                        <constraints>
+                                            <constraint firstItem="Hp1-4L-R4n" firstAttribute="leading" secondItem="fDg-qh-qyQ" secondAttribute="leading" constant="16" id="Ix9-g8-qRx"/>
+                                            <constraint firstItem="WU5-MN-FB0" firstAttribute="leading" secondItem="fDg-qh-qyQ" secondAttribute="leading" constant="16" id="N2A-Sw-46n"/>
+                                            <constraint firstItem="WU5-MN-FB0" firstAttribute="top" secondItem="fDg-qh-qyQ" secondAttribute="top" constant="16" id="XzB-M0-00J"/>
+                                            <constraint firstItem="5ze-EW-oIP" firstAttribute="leading" secondItem="fDg-qh-qyQ" secondAttribute="leading" constant="16" id="a0f-TR-IPH"/>
+                                            <constraint firstItem="Hp1-4L-R4n" firstAttribute="top" secondItem="5ze-EW-oIP" secondAttribute="bottom" constant="8" id="pfZ-jB-gk0"/>
+                                            <constraint firstAttribute="bottom" secondItem="Hp1-4L-R4n" secondAttribute="bottom" constant="16" id="sDw-WN-nGH"/>
+                                        </constraints>
+                                    </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaf-Ph-kv8" userLabel="Foreground">
                                         <rect key="frame" x="0.0" y="0.0" width="510" height="312"/>
                                         <subviews>
@@ -56,12 +92,9 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytB-wK-v9g" customClass="TransluscentRoundedLabel" customModule="SpeedRoommating" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="16" width="51.5" height="27.5"/>
+                                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytB-wK-v9g" customClass="TransluscentRoundedLabel" customModule="SpeedRoommating" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="16" width="16" height="8"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="FREE"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Et9-rE-nRn">
                                                 <rect key="frame" x="302" y="266.5" width="192" height="29.5"/>
@@ -98,10 +131,14 @@
                                     <constraint firstAttribute="trailing" secondItem="1eR-Ok-AtH" secondAttribute="trailing" id="4lx-kf-nhT"/>
                                     <constraint firstItem="1eR-Ok-AtH" firstAttribute="leading" secondItem="yj3-gA-vrC" secondAttribute="leading" id="AbW-5E-v7l"/>
                                     <constraint firstAttribute="bottom" secondItem="1eR-Ok-AtH" secondAttribute="bottom" id="HSy-h9-Hgr"/>
+                                    <constraint firstItem="fDg-qh-qyQ" firstAttribute="leading" secondItem="yj3-gA-vrC" secondAttribute="leading" id="ICn-s6-bkh"/>
                                     <constraint firstItem="qaf-Ph-kv8" firstAttribute="top" secondItem="yj3-gA-vrC" secondAttribute="top" id="O5i-bk-x1k"/>
+                                    <constraint firstAttribute="trailing" secondItem="fDg-qh-qyQ" secondAttribute="trailing" id="SCL-gV-fhH"/>
                                     <constraint firstAttribute="bottom" secondItem="qaf-Ph-kv8" secondAttribute="bottom" id="aCt-T8-jBN"/>
                                     <constraint firstItem="1eR-Ok-AtH" firstAttribute="top" secondItem="yj3-gA-vrC" secondAttribute="top" id="c8X-2v-g9W"/>
                                     <constraint firstAttribute="trailing" secondItem="qaf-Ph-kv8" secondAttribute="trailing" id="cFp-rr-9um"/>
+                                    <constraint firstAttribute="bottom" secondItem="fDg-qh-qyQ" secondAttribute="bottom" id="ir7-tU-PYs"/>
+                                    <constraint firstItem="fDg-qh-qyQ" firstAttribute="top" secondItem="yj3-gA-vrC" secondAttribute="top" id="n1Q-nL-qme"/>
                                     <constraint firstItem="qaf-Ph-kv8" firstAttribute="leading" secondItem="yj3-gA-vrC" secondAttribute="leading" id="npw-ju-x1G"/>
                                 </constraints>
                             </view>
@@ -127,6 +164,9 @@
                 <outlet property="costLabel" destination="ytB-wK-v9g" id="I5q-Mq-dMo"/>
                 <outlet property="dateLabel" destination="ZST-42-6Tu" id="1rG-rV-2eR"/>
                 <outlet property="locationLabel" destination="RZs-MX-7Xt" id="mGB-bX-lup"/>
+                <outlet property="placeholderContainer" destination="fDg-qh-qyQ" id="cqC-gk-huX"/>
+                <outlet property="placeholderDetailRow1" destination="5ze-EW-oIP" id="890-gY-uHm"/>
+                <outlet property="placeholderDetailRow2" destination="Hp1-4L-R4n" id="MCS-IB-3GV"/>
                 <outlet property="timeLabel" destination="7Sj-Bf-PvT" id="PtU-62-dvB"/>
                 <outlet property="venueLabel" destination="nEH-Iu-m6E" id="V3j-1n-tf0"/>
             </connections>
@@ -134,8 +174,12 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="IconCamera" width="48" height="48"/>
+        <namedColor name="Detail">
+            <color red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="PanelBackground">
-            <color red="0.88999998569488525" green="0.88999998569488525" blue="0.88999998569488525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Silver">
             <color red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

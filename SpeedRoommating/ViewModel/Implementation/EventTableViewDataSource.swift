@@ -211,6 +211,7 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             cell.costLabel.labelText = eventForCell.cost
             cell.dateLabel.text = shortReadableDate
             cell.timeLabel.text = durationText
+            cell.updatePlaceholder()
         }
         
         let imageTargetSize = cell.frame.size
@@ -228,12 +229,11 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
                     break
                 case let .success(image):
                     DispatchQueue.main.async {
-                        cell.backgroundImageView.image = image
+                        cell.backgroundImage = image
                     }
                 }
             }
         }
-        
         return cell
     }
 
@@ -249,8 +249,9 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
         }
         
         guard let eventForCell = eventsSplitByMonth?[indexPath.section][indexPath.row] as? ViewableEvent else {
-            // placeholder
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell",
+            for: indexPath) as! EventTableViewCell
+            return cell
         }
         
         let cell = createFilledCell(for: tableView, eventForCell: eventForCell, at:indexPath)
