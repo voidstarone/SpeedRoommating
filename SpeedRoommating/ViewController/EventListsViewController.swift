@@ -33,20 +33,20 @@ class EventListsViewController: UIViewController {
     var tabController: TabController!
     
     private func setupAccessibility() {
-        upcomingTab.isAccessibilityElement = true
-        upcomingTab.accessibilityIdentifier = "main_tab_upcoming"
-        upcomingTab.accessibilityLabel = "Upcoming"
-        upcomingTab.accessibilityHint = "View future events"
+        upcomingTab.button.isAccessibilityElement = true
+        upcomingTab.button.accessibilityIdentifier = "main_tab_upcoming"
+        upcomingTab.button.accessibilityLabel = "Upcoming"
+        upcomingTab.button.accessibilityHint = "View future events"
         
-        archivedTab.isAccessibilityElement = true
-        archivedTab.accessibilityIdentifier = "main_tab_archived"
-        archivedTab.accessibilityLabel = "Archived"
-        archivedTab.accessibilityHint = "View previous events"
+        archivedTab.button.isAccessibilityElement = true
+        archivedTab.button.accessibilityIdentifier = "main_tab_archived"
+        archivedTab.button.accessibilityLabel = "Archived"
+        archivedTab.button.accessibilityHint = "View previous events"
         
-        optionsTab.isAccessibilityElement = true
-        optionsTab.accessibilityIdentifier = "main_tab_options"
-        optionsTab.accessibilityLabel = "Options"
-        optionsTab.accessibilityHint = "Adjust app settings"
+        optionsTab.button.isAccessibilityElement = true
+        optionsTab.button.accessibilityIdentifier = "main_tab_options"
+        optionsTab.button.accessibilityLabel = "Options"
+        optionsTab.button.accessibilityHint = "Adjust app settings"
     }
     
     override func viewDidLoad() {

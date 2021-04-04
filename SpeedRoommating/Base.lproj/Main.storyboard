@@ -43,6 +43,7 @@
                                             </containerView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="main_scroll_content"/>
                                         <constraints>
                                             <constraint firstItem="1ro-TD-ULw" firstAttribute="height" secondItem="d97-bJ-bbw" secondAttribute="height" id="1o9-VV-L6P"/>
                                             <constraint firstItem="1ro-TD-ULw" firstAttribute="top" secondItem="d97-bJ-bbw" secondAttribute="top" id="JRz-eJ-urq"/>
@@ -214,6 +215,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qi-St-5ZJ" userLabel="Dummy">
                                 <rect key="frame" x="148" y="294" width="118" height="21"/>
+                                <accessibility key="accessibilityConfiguration" identifier="screen_options_title"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

@@ -23,26 +23,35 @@ class SpeedRoommatingUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // UI tests must launch the application that they test.
+    func testArchivedTabExists() {
         let app = XCUIApplication()
         app.launch()
-        let upcomingTab = app.buttons["main_tab_upcoming"]
-        while upcomingTab.waitForExistence(timeout: 1) {
+        let upcomingTab = app.buttons["main_tab_archived"]
 
+        if upcomingTab.waitForExistence(timeout: 1) {
+            upcomingTab.tap()
         }
-        upcomingTab.tap()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertEqual(upcomingTab.exists, true)
+    }
+    
+    func testTabbingWorks() {
+        let app = XCUIApplication()
+        app.launch()
+        let optionsTab = app.buttons["main_tab_options"]
+        XCTAssertEqual(app.staticTexts["screen_options_title"].isHittable, false)
+        if optionsTab.waitForExistence(timeout: 1) {
+            optionsTab.tap()
+        }
+        sleep(1)
+        XCTAssertEqual(app.staticTexts["screen_options_title"].isHittable, true)
     }
 
-//    func testLaunchPerformance() {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
+    func testLaunchPerformance() {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+            // This measures how long it takes to launch your application.
+            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+                XCUIApplication().launch()
+            }
+        }
+    }
 }
