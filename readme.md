@@ -9,7 +9,7 @@ Eventually the app will look like this: https://app.zeplin.io/project/602ce06011
 
 1. Create a separate repository with a separate codebase for fetching the events from the server. 
 	This was a decision taken partly to demonstrate knowledge of SPM and separation of concerns. It was also an opportunity to make something headless, which is inherently easier to have more complete testing on.  
-2. Start with a janky vertical slice and build out.  
+2. Start with a janky vertical slice and build out. 
 	I chose to do this firstly to demonstrate that I could refactor my way out of something pretty bad and add testing to that. It was also a quick way of getting a vertical slice so I could evisage the rest of the app more easily and build around it.
 3. Not worry too much about font styles and sizes.
 	Initially I was copying all the font sizes and styles directly from Zeplin, but all the measurements are just _off_ in a real app. They don't look right. So what I have right now is a mix of measurements taken directly from that and what I think looks better. I was going through matching them perfectly to what was in Zeplin to demonstrate attention to detail, but it would've looked terrible. I have also ignored a line above the table header section titles because it didn't seem worth going back to do, but I have noticed it.
@@ -17,16 +17,14 @@ Eventually the app will look like this: https://app.zeplin.io/project/602ce06011
 	It is my intent to refactor most of these out before submission, but my focus was on getting something with a fairly complete feature set and _good enough_ abstraction. I have mostly left notes where this badness occurs.
 5. Test the complicated stuff. 
 	The coverage in this repository is not as good as I would like or I was aiming for initially. Ultimately, I have opted for a more complete product over super-rigorous testing, but I have tested the bits that, for me, it made sense to test. A more complete approach to testing is demonstrated in the Repo project, but more unit and UI testing is very desirable.
-6. Neglect a race condition in Kingfisher.
-	I have chosen to use Kingfisher to cache images, particularly as there's a lot of duplication. The only issue is that I'm seeing a race condition internally within Kingfisher and sometimes images aren't being put on the screen the first time. This is one of my higher priorities to look into, but as there's every chance it's an issue within the library, I have decided to focus on stuff entirely within my control for now as I feel this is a better chance to show my work.
-7. Add a bit of accessibility.
+6. Add a bit of accessibility.
 	Initially I was doing this purely for UI testing purposes, but actually I think it is a pretty important thing. One of the moments when I've had the most respect for Apple was when Tim Cook said "When we work on making our devices accessible by the blind, I don't consider the bloody ROI", and they really do put the work in, so I think it's right that I do too.
-8. Be sloppy with Git.
+7. Be sloppy with Git.
 	I have been more careful with my Repo repository, but in this one there are quite a few commits which do more that one logical thing. I haven't considered it worthwhile stashing these changes and commiting them on their own; I have prioritised feature development over this.
-9. Not take any days off to do it.
+8. Not take any days off to do it.
 	This has meant I have made a few 2 am commits, and while I have managed to stay off commitlogsfromlastnight.com, I'm pretty sure these haven't helped the overall code quality. There wasn't too much I could do about this, but still.
-10. Stop before Easter weekend.
-	I spent a few nights on this, as well as a couple of weekends, and while I would really like this position, I would also really like to spend Easter with my partner. So I hope that this is enough of a demonstration of my ability and care to get me in the door.
+9. _Mostly_ stop before Easter weekend.
+	My plan was to get enough done before easter weekend, but this is the position I want the most, so I was able to convince my partner that we could both do a bit of work on Easter Sunday. Because of this I was able to get a couple of UI tests and fix a bug with image downloading.
 	
 ## Where I'd go from here
 
@@ -42,4 +40,5 @@ Well, apart from fixing all the stuff listed above, particularly the abstraction
 	Obviously seeing more event details would be a pretty crucial feature for any continuation of this. Seeing who was going, being able to add a calendar event, maybe some push notifications - all that kind of stuff would make it a real finished product.
 5. Add localisation.
 	Just a good thing to have all round. Better to have it in place and not need it than have to spend a week or two implementing it throughout the app.
-
+6. Features to create events.
+	It'd be good to be able not just to sign up to events, but to create them as well.
