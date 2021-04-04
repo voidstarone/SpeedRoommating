@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class EventTableViewCell : UITableViewCell, IEventTableViewCell {
     
@@ -42,6 +43,13 @@ class EventTableViewCell : UITableViewCell, IEventTableViewCell {
     
     @IBOutlet weak var placeholderDetailRow1: UIView!
     @IBOutlet weak var placeholderDetailRow2: UIView!
+    
+    var backgroundImageUrl: URL? {
+        didSet {
+            placeholderContainer.isHidden = true
+            backgroundImageView.kf.setImage(with: backgroundImageUrl)
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

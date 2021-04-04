@@ -15,14 +15,15 @@ enum KingfisherImageProviderError : Error {
     case invalidImage
 }
 
-public struct KingfisherImageProvider : IImageProvider {
+public class KingfisherImageProvider : IImageProvider, ImageDownloaderDelegate {
     
     private let cache = ImageCache.default
-    private let downloader = ImageDownloader.default
+    private let downloader = ImageDownloader(name: "VenueImageDownloader")
     public let overrideScaleFactor: CGFloat?
     
     init(overrideScaleFactor: CGFloat? = nil) {
         self.overrideScaleFactor = overrideScaleFactor
+        downloader.requestsUsePipelining = true
     }
   
     func requestImage(atUrl imageUrl: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {

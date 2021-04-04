@@ -213,27 +213,8 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             cell.timeLabel.text = durationText
             cell.updatePlaceholder()
         }
-        
         let imageTargetSize = cell.frame.size
-        let fetchImageThread = DispatchQueue(label: "fetchImages", qos: .background)
-        fetchImageThread.async {
-            [weak self] in
-            if (self == nil) {
-                return
-            }
-            self?.imageProvider.requestImage(atUrl: eventForCell.imageUrlAt(size: imageTargetSize)) {
-                result in
-                switch result {
-                case .failure:
-                    // TODO: no big deal; just get a placeholder
-                    break
-                case let .success(image):
-                    DispatchQueue.main.async {
-                        cell.backgroundImage = image
-                    }
-                }
-            }
-        }
+        cell.backgroundImageUrl = eventForCell.imageUrlAt(size: imageTargetSize)
         return cell
     }
 
