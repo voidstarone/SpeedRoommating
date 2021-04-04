@@ -52,7 +52,7 @@ class SpeedRoommatingUITests: XCTestCase {
         let knownEventHeader = app.staticTexts["table_header_april"]
         
         XCTAssertEqual(knownEventHeader.exists, false)
-        sleep(2)
+        sleep(3)
         XCTAssertEqual(knownEventHeader.exists, true)
     }
 

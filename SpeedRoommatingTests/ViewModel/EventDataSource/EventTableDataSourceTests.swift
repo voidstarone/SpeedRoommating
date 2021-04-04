@@ -14,7 +14,6 @@ import XCTest
 class EventTableDataSourceTests: XCTestCase {
     
     var mockEventProvider: ISpeedRoommatingEventProvider = MockSpeedRoommatingEventProvider()
-    var mockImageProvider: IImageProvider = MockImageProvider()
     
     var eventTableDataSource: IEventTableViewDataSource!
     var tableView: UITableView!
@@ -23,7 +22,6 @@ class EventTableDataSourceTests: XCTestCase {
         tableView = UITableView()
         
         eventTableDataSource = EventTableViewDataSource()
-        eventTableDataSource.imageProvider = mockImageProvider
         eventTableDataSource.eventProvider = mockEventProvider
         eventTableDataSource.controlledTableView = tableView
         
