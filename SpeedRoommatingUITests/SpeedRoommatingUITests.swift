@@ -45,6 +45,16 @@ class SpeedRoommatingUITests: XCTestCase {
         sleep(1)
         XCTAssertEqual(app.staticTexts["screen_options_title"].isHittable, true)
     }
+    
+    func testEventLoadingWorks() {
+        let app = XCUIApplication()
+        app.launch()
+        let knownEventHeader = app.staticTexts["table_header_april"]
+        
+        XCTAssertEqual(knownEventHeader.exists, false)
+        sleep(2)
+        XCTAssertEqual(knownEventHeader.exists, true)
+    }
 
     func testLaunchPerformance() {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
