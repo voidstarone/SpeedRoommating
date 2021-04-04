@@ -17,7 +17,6 @@ enum KingfisherImageProviderError : Error {
 
 public struct KingfisherImageProvider : IImageProvider {
     
-    // Abstract this
     private let cache = ImageCache.default
     private let downloader = ImageDownloader.default
     public let overrideScaleFactor: CGFloat?
@@ -57,7 +56,7 @@ public struct KingfisherImageProvider : IImageProvider {
         }
     }
     
-    private func downloadImage(url imageUrl: URL , onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
+    private func downloadImage(url imageUrl: URL, onComplete: @escaping (Result<UIImage?, Error>) -> Void) {
         downloader.downloadImage(with: imageUrl) { result in
             switch result {
             case .success(let value):

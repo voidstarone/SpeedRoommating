@@ -46,7 +46,7 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
         
         let buttonTopConstraint = NSLayoutConstraint(item: retryButton, attribute: .top, relatedBy: .equal, toItem: errorDescriptionLabel, attribute: .bottom, multiplier: 1, constant: 12)
         let buttonCenterXConstraint = NSLayoutConstraint(item: retryButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
-        
+
         NSLayoutConstraint.activate([buttonTopConstraint,
                                      buttonCenterXConstraint])
     }
@@ -64,13 +64,10 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
         errorDescriptionLabel.numberOfLines = 0
         errorDescriptionLabel.textAlignment = .center
         
-        
-        
         addSubview(errorImageView)
         addSubview(errorTitleLabel)
         addSubview(errorDescriptionLabel)
   
-        
         let errorImageViewTopConstraint = NSLayoutConstraint(item: errorImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 48)
         let errorImageViewCenterXConstraint = NSLayoutConstraint(item: errorImageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
         let errorImageHeightConstraint = NSLayoutConstraint(item: errorImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 48)
@@ -93,6 +90,5 @@ class EventTableViewErrorCell : UITableViewCell, IEventTableViewErrorCell {
                                      errorDescriptionViewLeadingConstraint,
                                      errorDescriptionViewTrailingConstraint,
                                      errorDescriptionViewBottomConstraint])
-        
     }
 }

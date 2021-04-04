@@ -23,21 +23,45 @@ class SpeedRoommatingUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // UI tests must launch the application that they test.
+    func testArchivedTabExists() {
         let app = XCUIApplication()
         app.launch()
+        let upcomingTab = app.buttons["main_tab_archived"]
+
+        if upcomingTab.waitForExistence(timeout: 1) {
+            upcomingTab.tap()
+        }
+        XCTAssertEqual(upcomingTab.exists, true)
+    }
+    
+    func testTabbingWorks() {
+        let app = XCUIApplication()
+        app.launch()
+        let optionsTab = app.buttons["main_tab_options"]
+        XCTAssertEqual(app.staticTexts["screen_options_title"].isHittable, false)
+        if optionsTab.waitForExistence(timeout: 1) {
+            optionsTab.tap()
+        }
+        sleep(1)
+        XCTAssertEqual(app.staticTexts["screen_options_title"].isHittable, true)
+    }
+    
+    func testEventLoadingWorks() {
+        let app = XCUIApplication()
+        app.launch()
+        let knownEventHeader = app.staticTexts["table_header_april"]
         
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertEqual(knownEventHeader.exists, false)
+        sleep(2)
+        XCTAssertEqual(knownEventHeader.exists, true)
     }
 
-//    func testLaunchPerformance() {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
+    func testLaunchPerformance() {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+            // This measures how long it takes to launch your application.
+            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+                XCUIApplication().launch()
+            }
+        }
+    }
 }

@@ -32,9 +32,27 @@ class EventListsViewController: UIViewController {
     
     var tabController: TabController!
     
+    private func setupAccessibility() {
+        upcomingTab.button.isAccessibilityElement = true
+        upcomingTab.button.accessibilityIdentifier = "main_tab_upcoming"
+        upcomingTab.button.accessibilityLabel = "Upcoming"
+        upcomingTab.button.accessibilityHint = "View future events"
+        
+        archivedTab.button.isAccessibilityElement = true
+        archivedTab.button.accessibilityIdentifier = "main_tab_archived"
+        archivedTab.button.accessibilityLabel = "Archived"
+        archivedTab.button.accessibilityHint = "View previous events"
+        
+        optionsTab.button.isAccessibilityElement = true
+        optionsTab.button.accessibilityIdentifier = "main_tab_options"
+        optionsTab.button.accessibilityLabel = "Options"
+        optionsTab.button.accessibilityHint = "Adjust app settings"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupAccessibility()
         guard let archivedEventsController = storyboard!.instantiateViewController(
             withIdentifier: "EventListTableViewController") as? EventListTableViewController else {
             return
