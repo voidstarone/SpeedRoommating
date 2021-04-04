@@ -27,7 +27,6 @@ enum EventTableViewDataSourceError : Error {
 public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     
     var whichEventsToShow: EventsToShow = .future
-    var imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
     var controlledTableView: UITableView! {
         didSet {
@@ -40,10 +39,6 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     
     private var eventsSplitByMonth: [[IViewableEvent]]?
     private var sectionMonthNumbers: [Int]?
-
-    override init() {
-        imageProvider.deleteCache {}
-    }
     
     func fetchEventsFromEventProvider(onComplete: @escaping (Error?) -> Void) {
         let fetchEventsThread = DispatchQueue(label: "fetchEvents", qos: .background)
@@ -213,27 +208,8 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
             cell.timeLabel.text = durationText
             cell.updatePlaceholder()
         }
-        
         let imageTargetSize = cell.frame.size
-        let fetchImageThread = DispatchQueue(label: "fetchImages", qos: .background)
-        fetchImageThread.async {
-            [weak self] in
-            if (self == nil) {
-                return
-            }
-            self?.imageProvider.requestImage(atUrl: eventForCell.imageUrlAt(size: imageTargetSize)) {
-                result in
-                switch result {
-                case .failure:
-                    // TODO: no big deal; just get a placeholder
-                    break
-                case let .success(image):
-                    DispatchQueue.main.async {
-                        cell.backgroundImage = image
-                    }
-                }
-            }
-        }
+        cell.backgroundImageUrl = eventForCell.imageUrlAt(size: imageTargetSize)
         return cell
     }
 
