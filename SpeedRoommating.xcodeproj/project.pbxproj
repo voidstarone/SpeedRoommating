@@ -39,8 +39,6 @@
 		6047C9E02613C00B0026E610 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6047C9DF2613C00B0026E610 /* FilledButton.swift */; };
 		604D16AB260E77BB00C5406A /* SpeedRoommatingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604D16AA260E77BB00C5406A /* SpeedRoommatingTabView.swift */; };
 		60587DEB26066F9B00A41C2E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 60587DEA26066F9B00A41C2E /* Kingfisher */; };
-		60587DEE260670AF00A41C2E /* KingfisherImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60587DED260670AF00A41C2E /* KingfisherImageProvider.swift */; };
-		60587DF12606734400A41C2E /* IImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60587DF02606734400A41C2E /* IImageProvider.swift */; };
 		60587DF426067B0400A41C2E /* KingfisherImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60587DF326067B0400A41C2E /* KingfisherImageProviderTests.swift */; };
 		606BA85726068C100063250A /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 606BA85626068C100063250A /* EventTableViewCell.xib */; };
 		606BA85926068CAE0063250A /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606BA85826068CAE0063250A /* EventTableViewCell.swift */; };
@@ -105,8 +103,6 @@
 		6047C9DD26139FD70026E610 /* NotifyingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyingScrollView.swift; sourceTree = "<group>"; };
 		6047C9DF2613C00B0026E610 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		604D16AA260E77BB00C5406A /* SpeedRoommatingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedRoommatingTabView.swift; sourceTree = "<group>"; };
-		60587DED260670AF00A41C2E /* KingfisherImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherImageProvider.swift; sourceTree = "<group>"; };
-		60587DF02606734400A41C2E /* IImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IImageProvider.swift; sourceTree = "<group>"; };
 		60587DF326067B0400A41C2E /* KingfisherImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherImageProviderTests.swift; sourceTree = "<group>"; };
 		606BA85626068C100063250A /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		606BA85826068CAE0063250A /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,7 +158,6 @@
 			children = (
 				60213F54260A966F0060091B /* ICdnUrlProvider.swift */,
 				60213F69260ABDA70060091B /* IEventTableDataSource.swift */,
-				60587DF02606734400A41C2E /* IImageProvider.swift */,
 				60213F4B260A864D0060091B /* IViewableEvent.swift */,
 			);
 			path = Interface;
@@ -173,7 +168,6 @@
 			children = (
 				60213F57260A96E30060091B /* ImgxUrlProvider.swift */,
 				60213F65260AB9AF0060091B /* EventTableViewDataSource.swift */,
-				60587DED260670AF00A41C2E /* KingfisherImageProvider.swift */,
 				60213F4F260A92C40060091B /* ViewableEvent.swift */,
 			);
 			path = Implementation;
@@ -507,7 +501,6 @@
 				60213F7B260D861E0060091B /* IEventTableHeaderView.swift in Sources */,
 				60DE47C02607FBBF00FC3E5B /* SpeedRoommatingEventProvider.swift in Sources */,
 				6047C9DE26139FD80026E610 /* NotifyingScrollView.swift in Sources */,
-				60587DF12606734400A41C2E /* IImageProvider.swift in Sources */,
 				60E0FC0D260695B60022F25C /* TransluscentRoundedLabel.swift in Sources */,
 				60213F58260A96E30060091B /* ImgxUrlProvider.swift in Sources */,
 				60213F7D260D86730060091B /* EventTableHeaderView.swift in Sources */,
@@ -529,7 +522,6 @@
 				60213F55260A966F0060091B /* ICdnUrlProvider.swift in Sources */,
 				604D16AB260E77BB00C5406A /* SpeedRoommatingTabView.swift in Sources */,
 				6047C9DA260F990E0026E610 /* OptionsViewController.swift in Sources */,
-				60587DEE260670AF00A41C2E /* KingfisherImageProvider.swift in Sources */,
 				60213F4C260A864E0060091B /* IViewableEvent.swift in Sources */,
 				6027E0E02603E6C5008FE8A4 /* SceneDelegate.swift in Sources */,
 				603F0A00260F8FA100CB6E7E /* EventListsViewController.swift in Sources */,

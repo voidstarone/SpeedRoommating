@@ -11,7 +11,6 @@ import UIKit
 
 protocol IEventTableViewDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    var imageProvider: IImageProvider { get set }
     var eventProvider: ISpeedRoommatingEventProvider { get set }
     var controlledTableView: UITableView! { get set }
     var whichEventsToShow: EventsToShow { get set }

@@ -27,7 +27,6 @@ enum EventTableViewDataSourceError : Error {
 public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     
     var whichEventsToShow: EventsToShow = .future
-    var imageProvider: IImageProvider = KingfisherImageProvider(overrideScaleFactor: 1.0)
     var eventProvider: ISpeedRoommatingEventProvider = SpeedRoommatingEventProvider()
     var controlledTableView: UITableView! {
         didSet {
@@ -40,10 +39,6 @@ public class EventTableViewDataSource : NSObject, IEventTableViewDataSource {
     
     private var eventsSplitByMonth: [[IViewableEvent]]?
     private var sectionMonthNumbers: [Int]?
-
-    override init() {
-        imageProvider.deleteCache {}
-    }
     
     func fetchEventsFromEventProvider(onComplete: @escaping (Error?) -> Void) {
         let fetchEventsThread = DispatchQueue(label: "fetchEvents", qos: .background)
