@@ -7,7 +7,7 @@ Eventually the app will look like this: https://app.zeplin.io/project/602ce06011
 
 ## My decisions
 
-1. Create a separate repository with a separate codebase for fetching the events from the server. 
+1. Create a [separate repository](https://github.com/voidstarone/SpareRoomEventRepository) with a separate codebase for fetching the events from the server. 
 	This was a decision taken partly to demonstrate knowledge of SPM and separation of concerns. It was also an opportunity to make something headless, which is inherently easier to have more complete testing on.  
 2. Start with a janky vertical slice and build out. 
 	I chose to do this firstly to demonstrate that I could refactor my way out of something pretty bad and add testing to that. It was also a quick way of getting a vertical slice so I could evisage the rest of the app more easily and build around it.
