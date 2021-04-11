@@ -23,8 +23,6 @@ Eventually the app will look like this: https://app.zeplin.io/project/602ce06011
 	I have been more careful with my Repo repository, but in this one there are quite a few commits which do more that one logical thing. I haven't considered it worthwhile stashing these changes and commiting them on their own; I have prioritised feature development over this.
 8. Not take any days off to do it.
 	This has meant I have made a few 2 am commits, and while I have managed to stay off commitlogsfromlastnight.com, I'm pretty sure these haven't helped the overall code quality. There wasn't too much I could do about this, but still.
-9. _Mostly_ stop before Easter weekend.
-	My plan was to get enough done before easter weekend, but this is the position I want the most, so I was able to convince my partner that we could both do a bit of work on Easter Sunday. Because of this I was able to get a couple of UI tests and fix a bug with image downloading.
 	
 ## Where I'd go from here
 
